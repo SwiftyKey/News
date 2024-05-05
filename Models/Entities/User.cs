@@ -5,7 +5,6 @@ namespace News.Models.Entities;
 public class User : BaseChangedEntity
 {
 	string login;
-	public int Id { get; set; }
 	public required string Login
 	{
 		get { return login; }
@@ -15,7 +14,16 @@ public class User : BaseChangedEntity
 			OnPropertyChanged(nameof(Login));
 		}
 	}
-	public required string HashPassword { get; set; }
+	string hashPassword;
+	public required string HashPassword 
+	{
+		get { return hashPassword; }
+		set
+		{
+			hashPassword = value;
+			OnPropertyChanged(nameof(HashPassword));
+		}
+	}
 	public IEnumerable<Source>? Sources { get; set; }
 	public IEnumerable<Favourite>? Favourites { get; set; }
 	public IEnumerable<FeedCategory>? UserCategories { get; set; }
