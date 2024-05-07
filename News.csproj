@@ -17,6 +17,9 @@
   <ItemGroup>
     <Folder Include="ViewModels\Services\" />
     <Folder Include="Views\" />
+    <Folder Include="Fonts\" />
+    <Folder Include="Images\" />
+    <Folder Include="Styles\" />
   </ItemGroup>
 
 </Project>
