@@ -4,7 +4,7 @@ namespace News.Models.Entities;
 
 public class Source : BaseChangedEntity
 {
-	string url;
+	string url = null!;
 	public required string Url
 	{
 		get { return url; }
@@ -14,4 +14,6 @@ public class Source : BaseChangedEntity
 			OnPropertyChanged();
 		}
 	}
+	public IEnumerable<User> Users { get; set; } = null!;
+	public IEnumerable<SourceCategory>? Categories { get; set; }
 }

@@ -1,0 +1,36 @@
+﻿using Microsoft.EntityFrameworkCore;
+using News.Models.Entities;
+using News.Models.Repositories.Configs;
+
+namespace News.Models.Repositories;
+
+public class AppContext : DbContext
+{
+	public DbSet<User> Users {  get; set; }
+	public DbSet<Source> Sources { get; set; }
+	public DbSet<Feed> Feeds { get; set; }
+	public DbSet<SourceCategory> SourceCategories { get; set; }
+	public DbSet<FeedCategory> FeedCategories { get; set; }
+	public DbSet<Feed> Favourites { get; set; }
+	public DbSet<Feed> FeedsReadLater { get; set; }
+	public DbSet<Feed> FeedsRead { get; set; }
+
+	public AppContext(DbContextOptions<AppContext> contextOptions) : base(contextOptions)
+	{ 
+		Database.EnsureCreated();
+	}
+
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+	{
+		optionsBuilder.UseSqlite("Data Source=LocalUserDb.db");
+	}
+
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		modelBuilder.ApplyConfiguration(new UserConfig());
+		modelBuilder.ApplyConfiguration(new FeedConfig());
+		modelBuilder.ApplyConfiguration(new SourceConfig());
+		modelBuilder.ApplyConfiguration(new FeedCategoryConfig());
+		modelBuilder.ApplyConfiguration(new SourceCategoryConfig());
+	}
+}
