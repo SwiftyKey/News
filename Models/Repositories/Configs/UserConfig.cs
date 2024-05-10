@@ -23,16 +23,7 @@ public class UserConfig : IEntityTypeConfiguration<User>
 			.HasMany(u => u.Favourites)
 			.WithMany(f => f.Users);
 		builder
-			.HasMany(u => u.FeedCategories)
-			.WithOne(fc => fc.User);
-		builder
-			.HasMany(u => u.SourceCategories)
-			.WithOne(sc => sc.User);
-		builder
 			.HasMany(u => u.FeedsReadLater)
-			.WithMany(f => f.Users);
-		builder
-			.HasMany(u => u.FeedsRead)
 			.WithMany(f => f.Users);
 	}
 }

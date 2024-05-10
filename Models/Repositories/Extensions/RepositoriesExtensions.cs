@@ -8,8 +8,6 @@ public static class RepositoriesExtension
 	{
 		collection.AddScoped<SourceRepository>();
 		collection.AddScoped<FeedRepository>();
-		collection.AddScoped<SourceCategoryRepository>();
-		collection.AddScoped<FeedCategoryRepository>();
 		collection.AddScoped<UserRepository>();
 	}
 }

@@ -9,8 +9,6 @@ public class AppContext : DbContext
 	public DbSet<User> Users {  get; set; }
 	public DbSet<Source> Sources { get; set; }
 	public DbSet<Feed> Feeds { get; set; }
-	public DbSet<SourceCategory> SourceCategories { get; set; }
-	public DbSet<FeedCategory> FeedCategories { get; set; }
 	public DbSet<Feed> Favourites { get; set; }
 	public DbSet<Feed> FeedsReadLater { get; set; }
 	public DbSet<Feed> FeedsRead { get; set; }
@@ -30,7 +28,5 @@ public class AppContext : DbContext
 		modelBuilder.ApplyConfiguration(new UserConfig());
 		modelBuilder.ApplyConfiguration(new FeedConfig());
 		modelBuilder.ApplyConfiguration(new SourceConfig());
-		modelBuilder.ApplyConfiguration(new FeedCategoryConfig());
-		modelBuilder.ApplyConfiguration(new SourceCategoryConfig());
 	}
 }

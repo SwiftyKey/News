@@ -14,10 +14,20 @@ public class SourceConfig : IEntityTypeConfiguration<Source>
 			.HasIndex(s => s.Url)
 			.IsUnique();
 		builder
+			.HasIndex(s => s.Url)
+			.IsUnique();
+		builder
+			.HasIndex(s => s.Title)
+			.IsUnique();
+		builder
+			.Property(s => s.Description);
+		builder
+			.Property(s => s.ImageUrl);
+		builder
 			.HasMany(s => s.Users)
 			.WithMany(u => u.Sources);
 		builder
-			.HasMany(s => s.Categories)
-			.WithMany(sc => sc.Sources);
+			.HasMany(s => s.Feeds)
+			.WithOne(f => f.Source);
 	}
 }

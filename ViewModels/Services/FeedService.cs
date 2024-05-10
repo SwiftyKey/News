@@ -27,6 +27,11 @@ public class FeedService(FeedRepository feedRepository)
 		return feedRepository.GetById(id);
 	}
 
+	public Feed? GetByUrl(string url)
+	{
+		return feedRepository.GetByUrl(url);
+	}
+
 	public async Task UpdateAsync(Feed feed)
 	{
 		var entity = feedRepository.GetById(feed.Id);

@@ -3,18 +3,9 @@ using News.Models.Entities.Hashers;
 
 namespace News.Models.Entities;
 
-public class User : BaseChangedEntity
+public class User : BaseEntity
 {
-	string login = null!;
-	public required string Login
-	{
-		get { return login; }
-		set
-		{ 
-			login = value;
-			OnPropertyChanged(nameof(Login));
-		}
-	}
+	public required string Login {  get; set; }
 	string hashPassword = null!;
 	public required string HashPassword 
 	{
@@ -22,13 +13,9 @@ public class User : BaseChangedEntity
 		set
 		{
 			hashPassword = SHA256Hasher.Hash(value);
-			OnPropertyChanged(nameof(HashPassword));
 		}
 	}
 	public IEnumerable<Source>? Sources { get; set; }
-	public IEnumerable<FeedCategory>? FeedCategories { get; set; }
-	public IEnumerable<SourceCategory>? SourceCategories { get; set; }
 	public IEnumerable<Feed>? Favourites { get; set; }
 	public IEnumerable<Feed>? FeedsReadLater { get; set; }
-	public IEnumerable<Feed>? FeedsRead { get; set; }
 }

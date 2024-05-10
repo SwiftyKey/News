@@ -8,4 +8,6 @@ public class FeedRepository : BaseRepository<Feed>
 	{
 		set = appContext.Feeds;
 	}
+
+	public Feed? GetByUrl(string url) => set.FirstOrDefault(x => x.Link == url);
 }

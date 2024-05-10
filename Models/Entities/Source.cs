@@ -2,18 +2,12 @@
 
 namespace News.Models.Entities;
 
-public class Source : BaseChangedEntity
+public class Source : BaseEntity
 {
-	string url = null!;
-	public required string Url
-	{
-		get { return url; }
-		set
-		{
-			url = value;
-			OnPropertyChanged();
-		}
-	}
+	public string Url { get; set; } = null!;
+	public string Title { get; set; } = null!;
+	public string Description { get; set; } = null!;
+	public string? ImageUrl { get; set; }
 	public IEnumerable<User> Users { get; set; } = null!;
-	public IEnumerable<SourceCategory>? Categories { get; set; }
+	public IEnumerable<Feed> Feeds { get; set; } = null!;
 }
