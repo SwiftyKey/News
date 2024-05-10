@@ -10,17 +10,18 @@
 
   <ItemGroup>
     <PackageReference Include="CodeHollow.FeedReader" Version="1.2.6" />
+    <PackageReference Include="FluentWPF" Version="0.10.2" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.10" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+    <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ViewModels\Services\" />
-    <Folder Include="Views\" />
-    <Folder Include="Fonts\" />
-    <Folder Include="Images\" />
-    <Folder Include="Styles\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

@@ -1,18 +1,48 @@
-﻿<Window x:Class="News.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-        xmlns:local="clr-namespace:News"
-        ui:WindowHelper.UseModernWindowStyle="True"
-        mc:Ignorable="d"
-        Title="News" Height="450" Width="800">
+﻿<fw:AcrylicWindow
+    x:Name="Window"
+    x:Class="News.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+    mc:Ignorable="d"
+    Title="News"
+    Width="800"
+    Height="600"
+    WindowStartupLocation="CenterScreen"
+    ExtendViewIntoTitleBar="True"
+    ui:ThemeManager.IsThemeAware="True"
+    ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged">
+
     <Grid>
-        <ui:SimpleStackPanel Margin="12" Spacing="24">
-            <TextBlock Text="My first ModernWPF app"/>
-            <Button Content="I am a button" />
-            <Button Content="I am an accent button"/>
-        </ui:SimpleStackPanel>
+        <ui:NavigationView
+            x:Name="NavView"
+            IsBackButtonVisible="Visible"
+            IsBackEnabled="True"
+            IsPaneOpen="True">
+            
+            <Border Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+                <ui:SimpleStackPanel
+                    Spacing="24"
+                    Margin="24,32,24,0">
+                    <Border
+                        Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
+                        HorizontalAlignment="Left"
+                        Width="200"
+                        Padding="12"
+                        CornerRadius="{DynamicResource ControlCornerRadius}">
+                        <TextBox
+                            ui:ControlHelper.Header="Текущая тема"
+                            Text="{Binding Path=(ui:ThemeManager.ActualTheme), RelativeSource={RelativeSource Self}, Mode=OneWay}"
+                            IsReadOnly="True" />
+                    </Border>
+                    <Button
+                        Content="Изменить тему"
+                        Click="ToggleTheme" />
+                </ui:SimpleStackPanel>
+            </Border>
+        </ui:NavigationView>
     </Grid>
-</Window>
+</fw:AcrylicWindow>
