@@ -1,4 +1,5 @@
 ﻿using News.Models.Common;
+using News.Models.Entities.Hashers;
 
 namespace News.Models.Entities;
 
@@ -20,7 +21,7 @@ public class User : BaseChangedEntity
 		get { return hashPassword; }
 		set
 		{
-			hashPassword = value;
+			hashPassword = SHA256Hasher.Hash(value);
 			OnPropertyChanged(nameof(HashPassword));
 		}
 	}
