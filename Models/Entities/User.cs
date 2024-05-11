@@ -5,7 +5,7 @@ namespace News.Models.Entities;
 
 public class User : BaseEntity
 {
-	public required string Login {  get; set; }
+	public required string Login { get; set; }
 	string hashPassword = null!;
 	public required string HashPassword 
 	{

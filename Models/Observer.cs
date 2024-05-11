@@ -7,8 +7,8 @@ namespace News.Models;
 public static class Observer
 {
 	public static TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 30);
-	public static User CurrentUser { get; set; }
-	public static FeedService FeedService { get; set; }
+	public static User CurrentUser { get; set; } = null!;
+	public static FeedService FeedService { get; set; } = null!;
 
 	public static async Task Update()
 	{
@@ -17,12 +17,12 @@ public static class Observer
 		foreach (var source in CurrentUser.Sources)
 		{
 			var feed = await FeedReader.ReadAsync(source.Url);
+
 			foreach (var item in feed.Items)
 			{
 				var result = FeedService.GetByUrl(item.Link);
 
-				if (result is not null) continue;
-				else
+				if (result is null)
 				{
 					var newFeed = new Entities.Feed() {
 						Title = item.Title,
@@ -31,6 +31,7 @@ public static class Observer
 						PublishingDate = item.PublishingDate,
 						Source = source
 					};
+
 					await FeedService.AddAsync(newFeed);
 				}
 			}

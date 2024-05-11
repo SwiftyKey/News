@@ -20,7 +20,7 @@ public class AppContext : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlite("Data Source=LocalUserDb.db");
+		optionsBuilder.UseSqlite("Data Source=Data/LocalUserDb.db");
 	}
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)

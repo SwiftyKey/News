@@ -1,0 +1,10 @@
+{
+	"users": [
+		{
+			"id": 1,
+			"theme": "dark",
+			"notifications": true,
+			"remember": true
+		}
+	]
+}
