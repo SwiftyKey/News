@@ -11,7 +11,6 @@ public class AppContext : DbContext
 	public DbSet<Feed> Feeds { get; set; }
 	public DbSet<Feed> Favourites { get; set; }
 	public DbSet<Feed> FeedsReadLater { get; set; }
-	public DbSet<Feed> FeedsRead { get; set; }
 
 	public AppContext(DbContextOptions<AppContext> contextOptions) : base(contextOptions)
 	{ 
@@ -20,7 +19,7 @@ public class AppContext : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlite("Data Source=Data/LocalUserDb.db");
+		optionsBuilder.UseSqlite(@"Data Source=News\Data\LocalUsersDb.db");
 	}
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>
