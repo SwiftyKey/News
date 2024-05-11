@@ -1,28 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ModernWpf;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace News.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для SettingsPages.xaml
-    /// </summary>
-    public partial class SettingsPage
+	/// <summary>
+	/// Логика взаимодействия для SettingsPages.xaml
+	/// </summary>
+	public partial class SettingsPage
     {
         public SettingsPage()
         {
             InitializeComponent();
-        }
-    }
+		}
+
+		private void ToggleTheme(object sender, RoutedEventArgs e)
+		{
+			if (ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Dark)
+				ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+			else
+				ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
+		}
+
+		private void Window_ActualThemeChanged(object sender, RoutedEventArgs e)
+		{
+			Debug.WriteLine(ThemeManager.GetActualTheme(this));
+		}
+	}
 }

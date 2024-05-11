@@ -11,38 +11,25 @@
     Title="News"
     Width="800"
     Height="600"
+    Enabled="True"
     WindowStartupLocation="CenterScreen"
     ExtendViewIntoTitleBar="True"
-    ui:ThemeManager.IsThemeAware="True"
-    ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged">
-
+    ui:ThemeManager.IsThemeAware="True">
     <Grid>
         <ui:NavigationView
             x:Name="NavView"
             IsBackButtonVisible="Visible"
             IsBackEnabled="True"
-            IsPaneOpen="True">
-            
-            <Border Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
-                <ui:SimpleStackPanel
-                    Spacing="24"
-                    Margin="24,32,24,0">
-                    <Border
-                        Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
-                        HorizontalAlignment="Left"
-                        Width="200"
-                        Padding="12"
-                        CornerRadius="{DynamicResource ControlCornerRadius}">
-                        <TextBox
-                            ui:ControlHelper.Header="Текущая тема"
-                            Text="{Binding Path=(ui:ThemeManager.ActualTheme), RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                            IsReadOnly="True" />
-                    </Border>
-                    <Button
-                        Content="Изменить тему"
-                        Click="ToggleTheme" />
-                </ui:SimpleStackPanel>
-            </Border>
+            IsPaneOpen="True" SelectionChanged="NavView_SelectionChanged">
+
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem
+                    Icon="AllApps"
+                    Content="Все новости">
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
+
+            <ui:Frame x:Name="contentFrame"/>
         </ui:NavigationView>
     </Grid>
 </fw:AcrylicWindow>

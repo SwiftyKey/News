@@ -1,6 +1,5 @@
-﻿using ModernWpf;
-using System.Diagnostics;
-using System.Windows;
+﻿using News.Views.Pages;
+using System.Windows.Media.Imaging;
 
 namespace News
 {
@@ -11,17 +10,12 @@ namespace News
 			InitializeComponent();
 		}
 
-		private void ToggleTheme(object sender, RoutedEventArgs e)
+		private void NavView_SelectionChanged(ModernWpf.Controls.NavigationView sender, ModernWpf.Controls.NavigationViewSelectionChangedEventArgs args)
 		{
-			if (ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Dark)
-				ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
-			else
-				ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
-		}
-
-		private void Window_ActualThemeChanged(object sender, RoutedEventArgs e)
-		{
-			Debug.WriteLine(ThemeManager.GetActualTheme(this));
+			if (args.IsSettingsSelected) 
+			{
+				contentFrame.Navigate(typeof(SettingsPage));
+			}
 		}
 	}
 }
