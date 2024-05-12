@@ -9,8 +9,8 @@
     xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
     mc:Ignorable="d"
     Title="News"
-    Width="800"
-    Height="600"
+    MinWidth="800"
+    MinHeight="600"
     Enabled="True"
     WindowStartupLocation="CenterScreen"
     ExtendViewIntoTitleBar="True"
@@ -20,12 +20,22 @@
             x:Name="NavView"
             IsBackButtonVisible="Visible"
             IsBackEnabled="True"
-            IsPaneOpen="True" SelectionChanged="NavView_SelectionChanged">
+            IsPaneOpen="True" SelectionChanged="NavView_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
 
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem
                     Icon="AllApps"
                     Content="Все новости">
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem
+                    Icon="Contact"
+                    Content="Профиль"
+                    VerticalAlignment="Bottom">
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem
+                    Icon="Globe"
+                    Content="Источники"
+                    VerticalAlignment="Bottom">
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
 

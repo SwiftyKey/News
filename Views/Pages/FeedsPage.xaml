@@ -1,0 +1,52 @@
+﻿<Page x:Class="News.Views.Pages.FeedsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:News.Views.Pages"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      mc:Ignorable="d"
+      Title="FeedsPage">
+    <Grid>
+        <Border Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+            <TabControl x:Name="FeedsTabControl">
+                <TabItem x:Name="MainTab">
+                    <TabItem.Header>
+                        <TextBlock>Основное</TextBlock>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <ScrollViewer>
+                            <ListBox x:Name="allFeedsList">
+
+                            </ListBox>
+                        </ScrollViewer>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem x:Name="ReadLaterTab">
+                    <TabItem.Header>
+                        <TextBlock>Отложенное</TextBlock>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <ScrollViewer>
+                            <ListBox x:Name="readLaterFeedsList">
+
+                            </ListBox>
+                        </ScrollViewer>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem x:Name="FavouriteTab">
+                    <TabItem.Header>
+                        <TextBlock>Избранное</TextBlock>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <ScrollViewer>
+                            <ListBox x:Name="favouriteFeedsList">
+
+                            </ListBox>
+                        </ScrollViewer>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</Page>

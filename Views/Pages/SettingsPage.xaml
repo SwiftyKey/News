@@ -12,23 +12,39 @@
     <Grid>
         <Border Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
             <ui:SimpleStackPanel
-        Spacing="24"
-        Margin="24,32,24,0">
+                    Spacing="12"
+                    Margin="24,32,24,32">
                 <Border
-            Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
-            HorizontalAlignment="Left"
-            Width="200"
-            Padding="12"
-            CornerRadius="{DynamicResource ControlCornerRadius}">
+                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
+                    HorizontalAlignment="Left"
+                    Width="200"
+                    Padding="12"
+                    CornerRadius="{DynamicResource ControlCornerRadius}">
                     <TextBox
-                ui:ControlHelper.Header="Текущая тема"
-                Text="{Binding Path=(ui:ThemeManager.ActualTheme), RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                IsReadOnly="True" />
+                        ui:ControlHelper.Header="Текущая тема"
+                        Text="{Binding Path=(ui:ThemeManager.ActualTheme), RelativeSource={RelativeSource Self}, Mode=OneWay}"
+                        IsReadOnly="True" />
                 </Border>
+                
                 <Button
-            Content="Изменить тему"
-            Click="ToggleTheme" />
-            </ui:SimpleStackPanel>
+                    Content="Изменить тему"
+                    Click="ToggleTheme"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Top" />
+                
+                <Border
+                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
+                    HorizontalAlignment="Left"
+                    Width="217"
+                    Padding="12"
+                    CornerRadius="{DynamicResource ControlCornerRadius}">
+                    <ui:ToggleSwitch
+                        ui:ControlHelper.Header="Отправлять мне уведомления"
+                        Padding="12"
+                        Width="199">
+                    </ui:ToggleSwitch>
+                </Border>
+             </ui:SimpleStackPanel>
         </Border>
     </Grid>
 </Page>

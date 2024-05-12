@@ -8,13 +8,18 @@ namespace News
 		public MainWindow()
 		{
 			InitializeComponent();
+			contentFrame.Navigate(typeof(FeedsPage));
 		}
 
 		private void NavView_SelectionChanged(ModernWpf.Controls.NavigationView sender, ModernWpf.Controls.NavigationViewSelectionChangedEventArgs args)
 		{
-			if (args.IsSettingsSelected) 
+			if (args.IsSettingsSelected)
 			{
 				contentFrame.Navigate(typeof(SettingsPage));
+			}
+			else
+			{
+				contentFrame.Navigate(typeof(FeedsPage));
 			}
 		}
 	}
