@@ -11,6 +11,8 @@
     Title="News"
     MinWidth="800"
     MinHeight="600"
+    Width="800"
+    Height="600"
     Enabled="True"
     WindowStartupLocation="CenterScreen"
     ExtendViewIntoTitleBar="True"
@@ -20,22 +22,22 @@
             x:Name="NavView"
             IsBackButtonVisible="Visible"
             IsBackEnabled="True"
-            IsPaneOpen="True" SelectionChanged="NavView_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            IsPaneOpen="True"
+            SelectionChanged="NavView_SelectionChanged"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
 
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem
                     Icon="AllApps"
-                    Content="Все новости">
-                </ui:NavigationViewItem>
-                <ui:NavigationViewItem
-                    Icon="Contact"
-                    Content="Профиль"
-                    VerticalAlignment="Bottom">
+                    Content="Все новости"
+                    x:Name="NVItemAllNews">
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem
                     Icon="Globe"
                     Content="Источники"
-                    VerticalAlignment="Bottom">
+                    VerticalAlignment="Bottom"
+                    x:Name="NVItemSources">
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
 

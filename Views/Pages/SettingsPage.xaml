@@ -23,15 +23,16 @@
                     <TextBox
                         ui:ControlHelper.Header="Текущая тема"
                         Text="{Binding Path=(ui:ThemeManager.ActualTheme), RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                        IsReadOnly="True" />
+                        IsReadOnly="True" Margin="12,-2,-12,2" />
                 </Border>
-                
+
                 <Button
                     Content="Изменить тему"
                     Click="ToggleTheme"
-                    Margin="10,0,0,0"
-                    VerticalAlignment="Top" />
-                
+                    Margin="0,-2,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center" />
+
                 <Border
                     Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
                     HorizontalAlignment="Left"
@@ -44,7 +45,7 @@
                         Width="199">
                     </ui:ToggleSwitch>
                 </Border>
-             </ui:SimpleStackPanel>
+            </ui:SimpleStackPanel>
         </Border>
     </Grid>
 </Page>

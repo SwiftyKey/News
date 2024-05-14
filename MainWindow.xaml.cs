@@ -1,5 +1,5 @@
 ﻿using News.Views.Pages;
-using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace News
 {
@@ -9,6 +9,7 @@ namespace News
 		{
 			InitializeComponent();
 			contentFrame.Navigate(typeof(FeedsPage));
+			Icon = new ImageSourceConverter().ConvertFrom(Properties.Resources.WindowSidebar) as ImageSource;
 		}
 
 		private void NavView_SelectionChanged(ModernWpf.Controls.NavigationView sender, ModernWpf.Controls.NavigationViewSelectionChangedEventArgs args)
