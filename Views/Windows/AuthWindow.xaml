@@ -43,7 +43,7 @@
                     HorizontalAlignment="Center"
                     Content="Войти"
                     Margin="10,0,0,0"
-                    FontSize="20"/>
+                    FontSize="20" Click="BtnSignIn_Click"/>
             </ui:SimpleStackPanel>
         </Border>
     </Grid>

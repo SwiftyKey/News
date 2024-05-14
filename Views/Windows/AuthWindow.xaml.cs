@@ -13,5 +13,12 @@ namespace News.Views.Windows
 			InitializeComponent();
 			Icon = new ImageSourceConverter().ConvertFrom(Properties.Resources.WindowSidebar) as ImageSource;
 		}
-	}
+
+		private void BtnSignIn_Click(object sender, System.Windows.RoutedEventArgs e)
+		{
+			MainWindow mainWindow = new MainWindow();
+			mainWindow.Show();
+			Close();
+        }
+    }
 }
