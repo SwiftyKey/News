@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace News.Models.Entities.Hashers;
+namespace News.Models.Hashers;
 
 public static class SHA256Hasher
 {

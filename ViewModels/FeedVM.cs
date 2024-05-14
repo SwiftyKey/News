@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using News.Models.Common;
 
-namespace News.ViewModels
+namespace News.ViewModels;
+
+public class FeedVM : BaseChangedEntity
 {
-    class FeedVM
-    {
-    }
 }

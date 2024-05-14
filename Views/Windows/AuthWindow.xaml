@@ -40,10 +40,18 @@
                     PasswordChar="*"/>
                 <Button
                     x:Name="BtnSignIn"
-                    HorizontalAlignment="Center"
                     Content="Войти"
-                    Margin="10,0,0,0"
-                    FontSize="20" Click="BtnSignIn_Click"/>
+                    Margin="114,2,0,0"
+                    FontSize="20" 
+                    Click="BtnSignIn_Click" 
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"/>
+                <CheckBox
+                    VerticalAlignment="Top"
+                    Content="Запомнить меня"
+                    Width="141"
+                    Margin="0,-48,0,0"
+                    HorizontalAlignment="Left"/>
             </ui:SimpleStackPanel>
         </Border>
     </Grid>

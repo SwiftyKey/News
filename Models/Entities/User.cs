@@ -1,5 +1,5 @@
 ﻿using News.Models.Common;
-using News.Models.Entities.Hashers;
+using News.Models.Hashers;
 
 namespace News.Models.Entities;
 
