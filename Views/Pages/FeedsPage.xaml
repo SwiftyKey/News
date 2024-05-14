@@ -7,6 +7,9 @@
       xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d">
     <Grid>
+        <ui:Frame
+            x:Name="feedsFrame"
+            Tag="NVItemAllNews"/>
         <Border Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
             <TabControl x:Name="FeedsTabControl">
                 <TabItem x:Name="MainTab">

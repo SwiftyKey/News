@@ -18,5 +18,5 @@ public partial class AuthWindow
 		MainWindow mainWindow = new();
 		mainWindow.Show();
 		Close();
-        }
     }
+}

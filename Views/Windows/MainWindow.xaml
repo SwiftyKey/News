@@ -25,23 +25,26 @@
             IsPaneOpen="True"
             SelectionChanged="NavView_SelectionChanged"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
-            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            BackRequested="NavView_BackRequested">
 
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem
                     Icon="AllApps"
                     Content="Все новости"
-                    x:Name="NVItemAllNews">
-                </ui:NavigationViewItem>
+                    x:Name="NVItemAllNews"
+                    Tag="FeedsPage"
+                    Width="318"/>
+
                 <ui:NavigationViewItem
                     Icon="Globe"
                     Content="Источники"
                     VerticalAlignment="Bottom"
-                    x:Name="NVItemSources">
-                </ui:NavigationViewItem>
+                    x:Name="NVItemSources"
+                    Tag="SourcesPage"/>
             </ui:NavigationView.MenuItems>
 
-            <ui:Frame x:Name="contentFrame"/>
+            <ui:Frame x:Name="mainFrame"/>
         </ui:NavigationView>
     </Grid>
 </fw:AcrylicWindow>

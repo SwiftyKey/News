@@ -6,7 +6,6 @@
       xmlns:ui="http://schemas.modernwpf.com/2019"
       xmlns:local="clr-namespace:News.Views.Pages"
       mc:Ignorable="d"
-      Title="Настройки"
       ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged">
 
     <Grid>
@@ -30,7 +29,9 @@
                     Content="Изменить тему"
                     Click="ToggleTheme"
                     Margin="192,-59,0,0"
-                    VerticalAlignment="Top" Height="33" Width="115" />
+                    VerticalAlignment="Top"
+                    Height="33"
+                    Width="115" />
 
                 <Border
                     Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
@@ -41,9 +42,17 @@
                     <ui:ToggleSwitch
                         ui:ControlHelper.Header="Отправлять мне уведомления"
                         Padding="12"
-                        Width="199" Margin="-12,-37,0,0" VerticalAlignment="Top">
+                        Width="199"
+                        Margin="-12,-37,0,0"
+                        VerticalAlignment="Top">
                     </ui:ToggleSwitch>
                 </Border>
+
+                <Button 
+                    x:Name="BtnLogOut"
+                    Content="Выйти из аккаунта"
+                    HorizontalAlignment="Left" />
+                <ui:Frame x:Name="settingsFrame"/>
             </ui:SimpleStackPanel>
         </Border>
     </Grid>
