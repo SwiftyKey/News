@@ -1,5 +1,6 @@
 ﻿using News.Models.Common;
 using News.Models.Hashers;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace News.Models.Entities;
 
@@ -15,7 +16,7 @@ public class User : BaseEntity
 			hashPassword = SHA256Hasher.Hash(value);
 		}
 	}
-	public IEnumerable<Source>? Sources { get; set; }
-	public IEnumerable<Feed>? Favourites { get; set; }
-	public IEnumerable<Feed>? FeedsReadLater { get; set; }
+	public List<Source> Sources { get; set; } = [];
+	public List<Feed> FeedsFavourites { get; set; } = [];
+	public List<Feed> FeedsReadLater { get; set; } = [];
 }

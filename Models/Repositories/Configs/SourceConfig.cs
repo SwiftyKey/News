@@ -24,10 +24,9 @@ public class SourceConfig : IEntityTypeConfiguration<Source>
 		builder
 			.Property(s => s.ImageUrl);
 		builder
-			.HasMany(s => s.Users)
-			.WithMany(u => u.Sources);
-		builder
 			.HasMany(s => s.Feeds)
-			.WithOne(f => f.Source);
+			.WithOne(f => f.Source)
+			.HasForeignKey(f => f.SourceId)
+			.OnDelete(DeleteBehavior.Cascade);
 	}
 }

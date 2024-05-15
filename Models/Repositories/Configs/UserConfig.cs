@@ -17,13 +17,10 @@ public class UserConfig : IEntityTypeConfiguration<User>
 			.HasIndex(u => u.HashPassword)
 			.IsUnique();
 		builder
-			.HasMany(u => u.Sources)
-			.WithMany(s => s.Users);
-		builder
-			.HasMany(u => u.Favourites)
-			.WithMany(f => f.Users);
+			.HasMany(u => u.FeedsFavourites)
+			.WithMany(f => f.UsersFavourites);
 		builder
 			.HasMany(u => u.FeedsReadLater)
-			.WithMany(f => f.Users);
+			.WithMany(f => f.UsersReadLater);
 	}
 }

@@ -8,6 +8,6 @@ public class Source : BaseEntity
 	public string Title { get; set; } = null!;
 	public string Description { get; set; } = null!;
 	public string? ImageUrl { get; set; }
-	public IEnumerable<User> Users { get; set; } = null!;
-	public IEnumerable<Feed> Feeds { get; set; } = null!;
+	public List<User> Users { get; set; } = [];
+	public List<Feed> Feeds { get; set; } = [];
 }

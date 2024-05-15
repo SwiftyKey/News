@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using News.Models.Entities;
 
 namespace News.Models.Repositories.Configs;
@@ -22,13 +23,15 @@ public class FeedConfig : IEntityTypeConfiguration<Feed>
 		builder
 			.Property(f => f.PublishingDate);
 		builder
-			.HasMany(f => f.Users)
+			.HasMany(f => f.UsersFavourites)
+			.WithMany(u => u.FeedsFavourites);
+		builder
+			.HasMany(f => f.UsersReadLater)
 			.WithMany(u => u.FeedsReadLater);
 		builder
-			.HasMany(f => f.Users)
-			.WithMany(u => u.Favourites);
-		builder
 			.HasOne(f => f.Source)
-			.WithMany(s => s.Feeds);
+			.WithMany(s => s.Feeds)
+			.HasForeignKey(f => f.SourceId)
+			.OnDelete(DeleteBehavior.Cascade);
 	}
 }

@@ -22,7 +22,8 @@
                     <TextBox
                         ui:ControlHelper.Header="Текущая тема"
                         Text="{Binding Path=(ui:ThemeManager.ActualTheme), RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                        IsReadOnly="True" Margin="-12,-2,12,2" />
+                        IsReadOnly="True"
+                        Margin="-12,-2,12,2" />
                 </Border>
 
                 <Button

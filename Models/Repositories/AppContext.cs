@@ -6,20 +6,18 @@ namespace News.Models.Repositories;
 
 public class AppContext : DbContext
 {
-	public DbSet<User> Users {  get; set; }
+	public DbSet<User> Users { get; set; }
 	public DbSet<Source> Sources { get; set; }
 	public DbSet<Feed> Feeds { get; set; }
-	public DbSet<Feed> Favourites { get; set; }
-	public DbSet<Feed> FeedsReadLater { get; set; }
 
-	public AppContext(DbContextOptions<AppContext> contextOptions) : base(contextOptions)
-	{ 
+	public AppContext()
+	{
 		Database.EnsureCreated();
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlite(@"Data Source=News\Data\LocalUsersDb.db");
+		optionsBuilder.UseSqlite("Data Source=LocalUsersDb.db");
 	}
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)

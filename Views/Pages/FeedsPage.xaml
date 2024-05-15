@@ -11,40 +11,42 @@
             x:Name="feedsFrame"
             Tag="NVItemAllNews"/>
         <Border Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
-            <TabControl x:Name="FeedsTabControl">
-                <TabItem x:Name="MainTab">
+            <TabControl
+                x:Name="TBFeeds"
+                Margin="0,30,0,0">
+                <TabItem x:Name="TIMain">
                     <TabItem.Header>
                         <TextBlock>Основное</TextBlock>
                     </TabItem.Header>
                     <TabItem.Content>
-                        <ScrollViewer>
-                            <ListBox x:Name="allFeedsList">
-
-                            </ListBox>
+                        <ScrollViewer
+                            HorizontalScrollBarVisibility="Auto"
+                            VerticalScrollBarVisibility="Auto">
+                            <ListBox x:Name="LBFeeds"/>
                         </ScrollViewer>
                     </TabItem.Content>
                 </TabItem>
-                <TabItem x:Name="ReadLaterTab">
+                <TabItem x:Name="TIReadLater">
                     <TabItem.Header>
                         <TextBlock>Отложенное</TextBlock>
                     </TabItem.Header>
                     <TabItem.Content>
-                        <ScrollViewer>
-                            <ListBox x:Name="readLaterFeedsList">
-
-                            </ListBox>
+                        <ScrollViewer
+                            HorizontalScrollBarVisibility="Auto"
+                            VerticalScrollBarVisibility="Auto">
+                            <ListBox x:Name="LBReadLater"/>
                         </ScrollViewer>
                     </TabItem.Content>
                 </TabItem>
-                <TabItem x:Name="FavouriteTab">
+                <TabItem x:Name="TIFavourite">
                     <TabItem.Header>
                         <TextBlock>Избранное</TextBlock>
                     </TabItem.Header>
                     <TabItem.Content>
-                        <ScrollViewer>
-                            <ListBox x:Name="favouriteFeedsList">
-
-                            </ListBox>
+                        <ScrollViewer
+                            HorizontalScrollBarVisibility="Auto"
+                            VerticalScrollBarVisibility="Auto">
+                            <ListBox x:Name="LBFavourites"/>
                         </ScrollViewer>
                     </TabItem.Content>
                 </TabItem>

@@ -7,47 +7,29 @@
       xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition 
-                Height="40"/>
-            <RowDefinition
-                Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition 
-                Width="*"/>
-            <ColumnDefinition 
-                Width="0.2*"/>
-            <ColumnDefinition 
-                Width="0.3*"/>
-            <ColumnDefinition 
-                Width="0.4*"/>
-        </Grid.ColumnDefinitions>
+        <ui:Frame x:Name="feedFrame"/>
         
-        <ui:CommandBar
-            x:Name="CommandButtons"
-            Grid.Row="0"
-            Grid.Column="1" Grid.ColumnSpan="3">
-            <ui:AppBarToggleButton
-                x:Name="BtnAddToFavourite"
-                Label="В избранное">
-            </ui:AppBarToggleButton>
-            <ui:AppBarToggleButton
-                x:Name="BtnAddToReadLater"
-                Label="Отложить">
-            </ui:AppBarToggleButton>
-            <ui:AppBarToggleButton
-                x:Name="BtnCopyLink"
-                Label="Копировать ссылку"
-                Icon="Copy">
-            </ui:AppBarToggleButton>
-        </ui:CommandBar>
-        <WebBrowser
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
-            x:Name="FeedViewer">
-            
-        </WebBrowser>
+        <Border
+            Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+            <ui:SimpleStackPanel>
+                <ui:CommandBar
+                    Margin="0,30,0,0">
+                    <ui:AppBarToggleButton
+                        x:Name="BtnAddToFavourite"
+                        Label="В избранное"/>
+
+                    <ui:AppBarToggleButton
+                        x:Name="BtnAddToReadLater"
+                        Label="Отложить"/>
+
+                    <ui:AppBarToggleButton
+                        x:Name="BtnCopyLink"
+                        Label="Копировать ссылку"
+                        Icon="Copy"/>
+                </ui:CommandBar>
+                <WebBrowser
+                    x:Name="WBFeedViewer"/>
+            </ui:SimpleStackPanel>
+        </Border>
     </Grid>
 </Page>

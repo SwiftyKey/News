@@ -12,9 +12,9 @@
         WindowStartupLocation="CenterScreen"
         ui:ThemeManager.IsThemeAware="True"
         Title="Авторизация"
-        Height="350"
-        MaxHeight="350"
-        MinHeight="350"
+        Height="400"
+        MaxHeight="400"
+        MinHeight="400"
         Width="400"
         MinWidth="400"
         Enabled="True">
@@ -38,6 +38,9 @@
                     FontSize="20"
                     TabIndex="1"
                     PasswordChar="*"/>
+                <TextBlock
+                    x:Name="TBPasswordStatus"
+                    FontSize="14"/>
                 <Button
                     x:Name="BtnSignIn"
                     Content="Войти"
@@ -47,11 +50,13 @@
                     VerticalAlignment="Top"
                     HorizontalAlignment="Center"/>
                 <CheckBox
+                    x:Name="CBRememberMe"
                     VerticalAlignment="Top"
                     Content="Запомнить меня"
                     Width="141"
                     Margin="0,-48,0,0"
-                    HorizontalAlignment="Left"/>
+                    HorizontalAlignment="Left"
+                    IsChecked="True"/>
             </ui:SimpleStackPanel>
         </Border>
     </Grid>

@@ -9,5 +9,5 @@ public class UserRepository : BaseRepository<User>
 		set = appContext.Users;
 	}
 
-	public User? GetByLogin(string login) => set.First(x => x.Login == login);
+	public User? GetByLogin(string login) => set.FirstOrDefault(x => x.Login == login);
 }
