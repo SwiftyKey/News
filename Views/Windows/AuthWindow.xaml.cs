@@ -1,9 +1,8 @@
-﻿using News.Models.Repositories;
-using News.Models.Entities;
-using News.ViewModels.Services;
-using System.Windows.Media;
+﻿using News.Models.Entities;
 using News.Models.Hashers;
 using News.Settings;
+using News.ViewModels.Services;
+using System.Windows.Media;
 
 namespace News.Views.Windows;
 
@@ -16,6 +15,13 @@ public partial class AuthWindow
 	{
 		InitializeComponent();
 		Icon = new ImageSourceConverter().ConvertFrom(Properties.Resources.WindowSidebar) as ImageSource;
+	}
+
+	public void ShowMainWindow()
+	{
+		MainWindow mainWindow = new();
+		mainWindow.Show();
+		Close();
 	}
 
 	private void BtnSignIn_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -44,19 +50,16 @@ public partial class AuthWindow
 			 }
         }
 
-		_ = SettingsSerializer.UpdateSettings(new AppSettings
-			{
-				CurrentUserId = user.Id,
-				IsRemember=isRemember
-			});
+		var newAppSettings = new AppSettings
+		{
+			CurrentUserId = user.Id,
+			IsRemember = isRemember
+		};
+		_ = SettingsSerializer.UpdateSettings(newAppSettings);
+		App.CurrentAppSettings = newAppSettings;
+		App.CurrentUser = App.UserService.GetById(App.CurrentAppSettings.CurrentUserId);
+		App.CurrentUserSettings = SettingsSerializer.GetUserSettingsByLogin(App.CurrentUser.Login).Result;
 
 		ShowMainWindow();
     }
-
-	public void ShowMainWindow()
-	{
-		MainWindow mainWindow = new();
-		mainWindow.Show();
-		Close();
-	}
 }

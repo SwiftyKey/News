@@ -41,18 +41,19 @@
                     Padding="12"
                     CornerRadius="{DynamicResource ControlCornerRadius}">
                     <ui:ToggleSwitch
+                        x:Name="TSNotification"
                         ui:ControlHelper.Header="Отправлять мне уведомления"
                         Padding="12"
                         Width="199"
                         Margin="-12,-37,0,0"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top" Toggled="TSNotification_Toggled">
                     </ui:ToggleSwitch>
                 </Border>
 
                 <Button 
                     x:Name="BtnLogOut"
                     Content="Выйти из аккаунта"
-                    HorizontalAlignment="Left" />
+                    HorizontalAlignment="Left" Click="BtnLogOut_Click" />
                 <ui:Frame x:Name="settingsFrame"/>
             </ui:SimpleStackPanel>
         </Border>

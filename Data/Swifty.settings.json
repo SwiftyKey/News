@@ -1,5 +1,5 @@
 {
-	"Id": 1,
-	"Theme": "Dark",
-	"Notifications": true
+  "Id": 1,
+  "Theme": "Light",
+  "Notifications": false
 }

@@ -24,8 +24,6 @@
             IsBackEnabled="True"
             IsPaneOpen="True"
             SelectionChanged="NavView_SelectionChanged"
-            ScrollViewer.HorizontalScrollBarVisibility="Auto"
-            ScrollViewer.VerticalScrollBarVisibility="Auto"
             BackRequested="NavView_BackRequested">
 
             <ui:NavigationView.MenuItems>
