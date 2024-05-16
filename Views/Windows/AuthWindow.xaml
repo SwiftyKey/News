@@ -44,19 +44,10 @@
                 <Button
                     x:Name="BtnSignIn"
                     Content="Войти"
-                    Margin="114,2,0,0"
                     FontSize="20" 
                     Click="BtnSignIn_Click" 
                     VerticalAlignment="Top"
                     HorizontalAlignment="Center"/>
-                <CheckBox
-                    x:Name="CBRememberMe"
-                    VerticalAlignment="Top"
-                    Content="Запомнить меня"
-                    Width="141"
-                    Margin="0,-48,0,0"
-                    HorizontalAlignment="Left"
-                    IsChecked="True"/>
             </ui:SimpleStackPanel>
         </Border>
     </Grid>

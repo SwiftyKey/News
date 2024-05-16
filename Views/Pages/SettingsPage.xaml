@@ -49,11 +49,6 @@
                         VerticalAlignment="Top" Toggled="TSNotification_Toggled">
                     </ui:ToggleSwitch>
                 </Border>
-
-                <Button 
-                    x:Name="BtnLogOut"
-                    Content="Выйти из аккаунта"
-                    HorizontalAlignment="Left" Click="BtnLogOut_Click" />
                 <ui:Frame x:Name="settingsFrame"/>
             </ui:SimpleStackPanel>
         </Border>

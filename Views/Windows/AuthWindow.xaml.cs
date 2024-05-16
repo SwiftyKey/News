@@ -1,7 +1,5 @@
 ﻿using News.Models.Entities;
 using News.Models.Hashers;
-using News.Settings;
-using News.ViewModels.Services;
 using System.Windows.Media;
 
 namespace News.Views.Windows;
@@ -27,7 +25,6 @@ public partial class AuthWindow
 	private void BtnSignIn_Click(object sender, System.Windows.RoutedEventArgs e)
 	{
 		var login = TBLogin.Text;
-		var isRemember = CBRememberMe.IsChecked;
 
 		var user = App.UserService.GetByLogin(login);
 		if (user is null)
@@ -39,7 +36,6 @@ public partial class AuthWindow
 				};
 
 			_ = App.UserService.AddAsync(user);
-			_ = SettingsSerializer.CreateUserSettings(new UserSettings { Id = user.Id }, login);
 		}
         else
         {
@@ -50,15 +46,7 @@ public partial class AuthWindow
 			 }
         }
 
-		var newAppSettings = new AppSettings
-		{
-			CurrentUserId = user.Id,
-			IsRemember = isRemember
-		};
-		_ = SettingsSerializer.UpdateSettings(newAppSettings);
-		App.CurrentAppSettings = newAppSettings;
-		App.CurrentUser = App.UserService.GetById(App.CurrentAppSettings.CurrentUserId);
-		App.CurrentUserSettings = SettingsSerializer.GetUserSettingsByLogin(App.CurrentUser.Login).Result;
+		App.CurrentUser = user;
 
 		ShowMainWindow();
     }
