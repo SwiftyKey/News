@@ -17,6 +17,12 @@ public class UserService(UserRepository userRepository)
 		await userRepository.SaveChangesAsync();
 	}
 
+	public async Task AddSourceByUserId(Source source, int userId)
+	{
+		userRepository.AddSourceByUserId(source, userId);
+		await userRepository.SaveChangesAsync();
+	}
+
 	public IEnumerable<User> GetAll()
 	{
 		return userRepository.GetAll();

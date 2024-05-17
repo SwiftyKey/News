@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:News.Views.Pages"
       xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:viewmodels="clr-namespace:News.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:ApplicationVM}"
       mc:Ignorable="d"
       d:DesignHeight="450"
       d:DesignWidth="800">
@@ -22,7 +24,8 @@
                     <ui:AppBarButton
                         x:Name="BtnAddNewSources"
                         Label="Добавить"
-                        Icon="Add" Click="BtnAddNewSources_Click">
+                        Icon="Add"
+                        Command="{Binding AddSourceCommand}">
                     </ui:AppBarButton>
                     <ui:AppBarButton
                         x:Name="BtnDeleteSource"
@@ -31,16 +34,27 @@
                     </ui:AppBarButton>
                 </ui:CommandBar>
                 <ScrollViewer
+                    x:Name="SVScroll"
                     HorizontalScrollBarVisibility="Auto"
-                    VerticalScrollBarVisibility="Auto">
-                    <ListBox x:Name="LBSources">
+                    VerticalScrollBarVisibility="Auto"
+                    CanContentScroll="True"
+                    PreviewMouseWheel="SVScroll_PreviewMouseWheel">
+                    <ListBox
+                        x:Name="LBSources"
+                        ItemsSource="{Binding Sources}"
+                        Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
+                        HorizontalContentAlignment="Center">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel
                                     ItemHeight="40"
-                                    Orientation="Horizontal">
-                                    <CheckBox/>
-                                    <TextBlock/>
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+                                    <TextBlock Text="{Binding Title}"/>
+                                    <TextBlock
+                                        Text="{Binding Url}"
+                                        Margin="10, 0, 0, 0"/>
                                 </WrapPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

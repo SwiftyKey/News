@@ -13,9 +13,9 @@ public partial class SourcesPage : Page
 		InitializeComponent();
 	}
 
-	private void BtnAddNewSources_Click(object sender, System.Windows.RoutedEventArgs e)
+	private void SVScroll_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
 	{
-		var addSourcesWindow = new AddSourcesWindow();
-		addSourcesWindow.Show();
-    }
+		SVScroll.ScrollToVerticalOffset(SVScroll.VerticalOffset - (e.Delta > 0 ? 20 : -20));
+		e.Handled = true;
+	}
 }

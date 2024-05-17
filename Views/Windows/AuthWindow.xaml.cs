@@ -1,5 +1,6 @@
 ﻿using News.Models.Entities;
 using News.Models.Hashers;
+using News.ViewModels;
 using System.Windows.Media;
 
 namespace News.Views.Windows;
@@ -26,28 +27,28 @@ public partial class AuthWindow
 	{
 		var login = TBLogin.Text;
 
-		var user = App.UserService.GetByLogin(login);
+		var user = ApplicationVM.UserService.GetByLogin(login);
 		if (user is null)
 		{
 			user = new User
-				{
-					Login = login,
-					HashPassword = PBPassword.Password
-				};
-
-			_ = App.UserService.AddAsync(user);
+			{
+				Login = login,
+				HashPassword = PBPassword.Password
+			};
+			
+			_ = ApplicationVM.UserService.AddAsync(user);
 		}
-        else
-        {
-             if (user.HashPassword != SHA256Hasher.Hash(PBPassword.Password))
-			 {
+		else
+		{
+			if (user.HashPassword != SHA256Hasher.Hash(PBPassword.Password))
+			{
 				TBPasswordStatus.Text = "Не правильный пароль";
 				return;
-			 }
-        }
+			}
+		}
 
-		App.CurrentUser = user;
+		ApplicationVM.CurrentUser = user;
 
 		ShowMainWindow();
-    }
+	}
 }

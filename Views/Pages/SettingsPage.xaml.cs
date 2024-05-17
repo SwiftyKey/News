@@ -1,4 +1,5 @@
 ﻿using ModernWpf;
+using News.ViewModels;
 using System.Diagnostics;
 using System.Windows;
 
@@ -29,6 +30,6 @@ public partial class SettingsPage
 
 	private void TSNotification_Toggled(object sender, RoutedEventArgs e)
 	{
-		App.NotificationsOn = TSNotification.IsOn;
+		ApplicationVM.NotificationsOn = TSNotification.IsOn;
 	}
 }

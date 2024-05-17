@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:News.Views.Pages"
       xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:viewmodels="clr-namespace:News.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:ApplicationVM}"
       mc:Ignorable="d">
     <Grid>
         <ui:Frame
@@ -23,9 +25,34 @@
                     </TabItem.Header>
                     <TabItem.Content>
                         <ScrollViewer
+                            x:Name="SVScrollMain"
                             HorizontalScrollBarVisibility="Auto"
-                            VerticalScrollBarVisibility="Auto">
-                            <ListBox x:Name="LBFeeds"/>
+                            VerticalScrollBarVisibility="Auto"
+                            CanContentScroll="True"
+                            PreviewMouseWheel="SVScrollMain_PreviewMouseWheel">
+                            <ListBox
+                                x:Name="LBFeeds"
+                                ItemsSource="{Binding Feeds}"
+                                Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
+                                HorizontalContentAlignment="Center">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel
+                                            ItemHeight="40"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+                                            <TextBlock Text="{Binding Source.Title}"/>
+                                            <TextBlock
+                                                Text="{Binding Title}"
+                                                Margin="10, 0, 0, 0"/>
+                                            <TextBlock
+                                                Text="{Binding PublishingDate}"
+                                                Margin="10, 0, 0, 0"/>
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </ScrollViewer>
                     </TabItem.Content>
                 </TabItem>
@@ -37,9 +64,34 @@
                     </TabItem.Header>
                     <TabItem.Content>
                         <ScrollViewer
+                            x:Name="SVScrollReadLater"
                             HorizontalScrollBarVisibility="Auto"
-                            VerticalScrollBarVisibility="Auto">
-                            <ListBox x:Name="LBReadLater"/>
+                            VerticalScrollBarVisibility="Auto"
+                            CanContentScroll="True"
+                            PreviewMouseWheel="SVScrollReadLater_PreviewMouseWheel">
+                            <ListBox
+                                x:Name="LBReadLater"
+                                ItemsSource="{Binding FeedsReadLater}"
+                                Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
+                                HorizontalContentAlignment="Center">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel
+                                            ItemHeight="40"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+                                            <TextBlock Text="{Binding Source.Title}"/>
+                                            <TextBlock
+                                                Text="{Binding Title}"
+                                                Margin="10, 0, 0, 0"/>
+                                            <TextBlock
+                                                Text="{Binding PublishingDate}"
+                                                Margin="10, 0, 0, 0"/>
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </ScrollViewer>
                     </TabItem.Content>
                 </TabItem>
@@ -51,9 +103,34 @@
                     </TabItem.Header>
                     <TabItem.Content>
                         <ScrollViewer
+                            x:Name="SVScrollFavourites"
                             HorizontalScrollBarVisibility="Auto"
-                            VerticalScrollBarVisibility="Auto">
-                            <ListBox x:Name="LBFavourites"/>
+                            VerticalScrollBarVisibility="Auto"
+                            CanContentScroll="True"
+                            PreviewMouseWheel="SVScrollFavourites_PreviewMouseWheel">
+                            <ListBox
+                                x:Name="LBFavourites"
+                                ItemsSource="{Binding FeedsFavourites}"
+                                Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
+                                HorizontalContentAlignment="Center">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel
+                                            ItemHeight="40"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+                                            <TextBlock Text="{Binding Source.Title}"/>
+                                            <TextBlock
+                                                Text="{Binding Title}"
+                                                Margin="10, 0, 0, 0"/>
+                                            <TextBlock
+                                                Text="{Binding PublishingDate}"
+                                                Margin="10, 0, 0, 0"/>
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </ScrollViewer>
                     </TabItem.Content>
                 </TabItem>

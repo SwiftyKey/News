@@ -46,7 +46,8 @@
                         Padding="12"
                         Width="199"
                         Margin="-12,-37,0,0"
-                        VerticalAlignment="Top" Toggled="TSNotification_Toggled">
+                        VerticalAlignment="Top"
+                        Toggled="TSNotification_Toggled">
                     </ui:ToggleSwitch>
                 </Border>
                 <ui:Frame x:Name="settingsFrame"/>

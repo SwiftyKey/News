@@ -10,4 +10,6 @@ public class UserRepository : BaseRepository<User>
 	}
 
 	public User? GetByLogin(string login) => set.FirstOrDefault(x => x.Login == login);
+
+	public void AddSourceByUserId(Source source, int userId) => GetById(userId).Sources.Add(source);
 }

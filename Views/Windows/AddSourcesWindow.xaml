@@ -7,6 +7,8 @@
         xmlns:local="clr-namespace:News.Views.Windows"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:entities="clr-namespace:News.Models.Entities"
+        d:DataContext="{d:DesignInstance Type=entities:Source}"
         mc:Ignorable="d"
         Title="Добавление источников"
         WindowStartupLocation="CenterScreen"
@@ -20,11 +22,13 @@
                 <WrapPanel
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     Width="500">
                     <TextBox
                         x:Name="TBSourceLink"
                         ui:ControlHelper.Header="RSS-ссылка, Ссылка на сайт"
-                        Width="418"/>
+                        Width="418"
+                        Text="{Binding Url}"/>
                     <Button
                         x:Name="BtnSearch"
                         Height="31"
@@ -34,14 +38,6 @@
                         Click="BtnSearch_Click">
                     </Button>
                 </WrapPanel>
-                <StatusBar
-                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
-                    Margin="0,5,0,-24">
-                    <StatusBarItem
-                        HorizontalAlignment="Center">
-                        <TextBlock x:Name="SBResult"/>
-                    </StatusBarItem>
-                </StatusBar>
             </ui:SimpleStackPanel>
         </Border>
     </Grid>

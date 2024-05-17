@@ -1,4 +1,5 @@
 ﻿using ModernWpf.Controls;
+using News.ViewModels;
 using News.Views.Pages;
 using System.Windows.Media;
 
@@ -12,6 +13,7 @@ public partial class MainWindow
 	public MainWindow()
 	{
 		InitializeComponent();
+		DataContext = new ApplicationVM();
 
 		History = [];
 		NavView.SelectedItem = NVItemAllNews;
