@@ -17,17 +17,18 @@
             Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
             <ui:SimpleStackPanel>
                 <ui:CommandBar
-                    Margin="0,30,0,0">
-                    <ui:AppBarToggleButton
+                    Margin="0,30,0,0"
+                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+                    <ui:AppBarButton
                         x:Name="BtnAddNewSources"
                         Label="Добавить"
-                        Icon="Add">
-                    </ui:AppBarToggleButton>
-                    <ui:AppBarToggleButton
+                        Icon="Add" Click="BtnAddNewSources_Click">
+                    </ui:AppBarButton>
+                    <ui:AppBarButton
                         x:Name="BtnDeleteSource"
                         Label="Удалить"
                         Icon="Delete">
-                    </ui:AppBarToggleButton>
+                    </ui:AppBarButton>
                 </ui:CommandBar>
                 <ScrollViewer
                     HorizontalScrollBarVisibility="Auto"

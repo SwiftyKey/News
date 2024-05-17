@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using News.Views.Windows;
+using System.Windows.Controls;
 
 namespace News.Views.Pages;
 
@@ -11,4 +12,10 @@ public partial class SourcesPage : Page
 	{
 		InitializeComponent();
 	}
+
+	private void BtnAddNewSources_Click(object sender, System.Windows.RoutedEventArgs e)
+	{
+		var addSourcesWindow = new AddSourcesWindow();
+		addSourcesWindow.Show();
+    }
 }

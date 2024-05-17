@@ -13,8 +13,11 @@
         <Border Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
             <TabControl
                 x:Name="TBFeeds"
-                Margin="0,30,0,0">
-                <TabItem x:Name="TIMain">
+                Margin="0,30,0,0"
+                Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+                <TabItem 
+                    x:Name="TIMain"
+                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
                     <TabItem.Header>
                         <TextBlock>Основное</TextBlock>
                     </TabItem.Header>
@@ -26,7 +29,9 @@
                         </ScrollViewer>
                     </TabItem.Content>
                 </TabItem>
-                <TabItem x:Name="TIReadLater">
+                <TabItem
+                    x:Name="TIReadLater"
+                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
                     <TabItem.Header>
                         <TextBlock>Отложенное</TextBlock>
                     </TabItem.Header>
@@ -38,7 +43,9 @@
                         </ScrollViewer>
                     </TabItem.Content>
                 </TabItem>
-                <TabItem x:Name="TIFavourite">
+                <TabItem
+                    x:Name="TIFavourite"
+                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
                     <TabItem.Header>
                         <TextBlock>Избранное</TextBlock>
                     </TabItem.Header>
