@@ -92,19 +92,17 @@ public class ApplicationVM : BaseViewModel
 	}
 
 	private RelayCommand? removeSourceCommand;
-
 	public RelayCommand RemoveSourceCommand
 	{
 		get
 		{
 			return removeSourceCommand ??
-				(removeSourceCommand = new RelayCommand(obj =>
+				(removeSourceCommand = new RelayCommand((selectedItem) =>
 				{
-					Source? source = obj as Source;
-					if (source != null)
-						Sources.Remove(source);
-				},
-				(obj) => Sources.Count > 0));
+					Source? source = selectedItem as Source;
+					if (source is null) return;
+					_ = SourceService.DeleteAsync(source);
+				}));
 		}
 	}
 }

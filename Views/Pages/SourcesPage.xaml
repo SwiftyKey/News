@@ -30,7 +30,9 @@
                     <ui:AppBarButton
                         x:Name="BtnDeleteSource"
                         Label="Удалить"
-                        Icon="Delete">
+                        Icon="Delete"
+                        Command="{Binding RemoveSourceCommand}"
+                        CommandParameter="{Binding ElementName=LBSources, Path=SelectedItem}">
                     </ui:AppBarButton>
                 </ui:CommandBar>
                 <ScrollViewer
