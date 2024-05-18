@@ -1,0 +1,47 @@
+﻿<fw:AcrylicWindow
+        x:Class="News.Views.Windows.FeedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        xmlns:local="clr-namespace:News.Views.Windows"
+        xmlns:entities="clr-namespace:News.Models.Entities"
+        d:DataContext="{d:DesignInstance Type=entities:Feed}"
+        mc:Ignorable="d"
+        Height="450"
+        Width="800"
+        Title="{Binding Title}"
+        WindowStartupLocation="CenterScreen"
+        ui:ThemeManager.IsThemeAware="True">
+    <Grid>
+        <Border
+            Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+            <ui:SimpleStackPanel>
+                <ui:CommandBar
+                    Margin="0,30,0,0"
+                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+                    <ui:AppBarToggleButton
+                        x:Name="BtnAddToFavourite"
+                        Label="В избранное"/>
+
+                    <ui:AppBarToggleButton
+                        x:Name="BtnAddToReadLater"
+                        Label="Отложить"/>
+
+                    <ui:AppBarButton
+                        x:Name="BtnCopyLink"
+                        Label="Копировать ссылку"
+                        Icon="Copy"/>
+                </ui:CommandBar>
+                <DockPanel LastChildFill="True">
+                    <cefSharp:ChromiumWebBrowser
+                        x:Name="CWBFeedViewer"
+                        Address="https://github.com/cefsharp/CefSharp/wiki/Frequently-asked-questions" />
+                </DockPanel>
+            </ui:SimpleStackPanel>
+        </Border>
+    </Grid>
+</fw:AcrylicWindow>

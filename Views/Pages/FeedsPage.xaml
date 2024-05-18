@@ -2,10 +2,11 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:News.Views.Pages"
       xmlns:ui="http://schemas.modernwpf.com/2019"
       xmlns:viewmodels="clr-namespace:News.ViewModels"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       d:DataContext="{d:DesignInstance Type=viewmodels:ApplicationVM}"
       mc:Ignorable="d">
     <Grid>
@@ -52,6 +53,13 @@
                                         </WrapPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding ViewFeedCommand}"
+                                            CommandParameter="{Binding ElementName=LBFeeds, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ListBox>
                         </ScrollViewer>
                     </TabItem.Content>
@@ -91,6 +99,13 @@
                                         </WrapPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding ViewFeedCommand}"
+                                            CommandParameter="{Binding ElementName=LBReadLater, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ListBox>
                         </ScrollViewer>
                     </TabItem.Content>
@@ -130,6 +145,13 @@
                                         </WrapPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding ViewFeedCommand}"
+                                            CommandParameter="{Binding ElementName=LBFavourites, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ListBox>
                         </ScrollViewer>
                     </TabItem.Content>

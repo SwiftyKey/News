@@ -6,9 +6,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CefSharp.Wpf" Version="124.3.80" />
     <PackageReference Include="CodeHollow.FeedReader" Version="1.2.6" />
     <PackageReference Include="FluentWPF" Version="0.10.2" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />

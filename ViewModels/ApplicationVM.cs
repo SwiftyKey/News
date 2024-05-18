@@ -16,6 +16,7 @@ public class ApplicationVM : BaseViewModel
 	public static UserService UserService { get; set; } = new(new UserRepository(DB));
 	public static FeedService FeedService { get; set; } = new(new FeedRepository(DB));
 	public static SourceService SourceService { get; set; } = new(new SourceRepository(DB));
+
 	public static User? CurrentUser { get; set; }
 	public static bool NotificationsOn { get; set; } = false;
 
@@ -32,28 +33,6 @@ public class ApplicationVM : BaseViewModel
 
 		Feeds = DB.Feeds.Local.ToObservableCollection();
 		Sources = DB.Sources.Local.ToObservableCollection();
-	}
-
-	Source? selectedSource;
-	public Source? SelectedSource
-	{
-		get => selectedSource;
-		set
-		{
-			selectedSource = value;
-			OnPropertyChanged(nameof(SelectedSource));
-		}
-	}
-
-	Models.Entities.Feed? selectedFeed;
-	public Models.Entities.Feed? SelectedFeed
-	{
-		get => selectedFeed;
-		set
-		{
-			selectedFeed = value;
-			OnPropertyChanged(nameof(SelectedFeed));
-		}
 	}
 
 	private RelayCommand? addSourceCommand;
@@ -96,13 +75,26 @@ public class ApplicationVM : BaseViewModel
 	{
 		get
 		{
-			return removeSourceCommand ??
-				(removeSourceCommand = new RelayCommand((selectedItem) =>
+			return removeSourceCommand ??= new RelayCommand((selectedItem) =>
 				{
 					Source? source = selectedItem as Source;
 					if (source is null) return;
 					_ = SourceService.DeleteAsync(source);
-				}));
+				});
+		}
+	}
+
+	private RelayCommand? viewFeedCommand;
+	public RelayCommand? ViewFeedCommand
+	{
+		get
+		{
+			return viewFeedCommand ??= new RelayCommand((selectedItem) => 
+				{
+					Models.Entities.Feed? feed = selectedItem as Models.Entities.Feed;
+					FeedWindow feedWindow = new (feed);
+					feedWindow.Show();
+				});
 		}
 	}
 }

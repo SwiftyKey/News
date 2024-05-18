@@ -17,6 +17,12 @@ public class SourceService(SourceRepository sourceRepository)
 		await sourceRepository.SaveChangesAsync();
 	}
 
+	public async Task DeleteRangeAsync(IEnumerable<Source> sources)
+	{
+		sourceRepository.DeleteRange(sources);
+		await sourceRepository.SaveChangesAsync();
+	}
+
 	public IEnumerable<Source> GetAll()
 	{
 		return sourceRepository.GetAll();
