@@ -16,7 +16,8 @@
     Enabled="True"
     WindowStartupLocation="CenterScreen"
     ExtendViewIntoTitleBar="True"
-    ui:ThemeManager.IsThemeAware="True">
+    ui:ThemeManager.IsThemeAware="True"
+    Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid>
         <ui:NavigationView
             x:Name="NavView"

@@ -10,12 +10,11 @@ using System.Collections.ObjectModel;
 
 namespace News.ViewModels;
 
-public class ApplicationVM : BaseViewModel
+public class ApplicationVM : BaseChanged
 {
 	public static Models.Repositories.AppContext DB { get; set; } = new();
 	public static FeedService FeedService { get; set; } = new(new FeedRepository(DB));
 	public static SourceService SourceService { get; set; } = new(new SourceRepository(DB));
-	public static bool NotificationsOn { get; set; } = false;
 
 	public ObservableCollection<Source> Sources { get; set; } = [];
 	public ObservableCollection<Models.Entities.Feed> Feeds { get; set; } = [];

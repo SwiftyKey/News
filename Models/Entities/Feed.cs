@@ -2,7 +2,7 @@
 
 namespace News.Models.Entities;
 
-public class Feed : BaseChangedEntity
+public class Feed : BaseEntity
 {
 	public required string Title { get; set; }
 	public required string Link { get; set; }

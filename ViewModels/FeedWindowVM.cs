@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace News.ViewModels;
 
-public class FeedWindowVM(Feed feed) : BaseViewModel
+public class FeedWindowVM(Feed feed) : BaseChanged
 {
 	public Feed CurrentFeed { get; set; } = feed;
 

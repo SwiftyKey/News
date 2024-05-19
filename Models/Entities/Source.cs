@@ -2,7 +2,7 @@
 
 namespace News.Models.Entities;
 
-public class Source : BaseChangedEntity
+public class Source : BaseEntity
 {
 	string? url;
 	public string? Url

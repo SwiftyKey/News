@@ -1,4 +1,5 @@
 ﻿using ModernWpf.Controls;
+using News.Settings;
 using News.ViewModels;
 using News.Views.Pages;
 using System.Windows.Media;
@@ -51,4 +52,14 @@ public partial class MainWindow
 			IsGoBack = false;
 		}
     }
+
+	private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
+	{
+		SettingsVM.AppSettings = SettingsSerializer.GetAppSettings();
+	}
+
+	private void Window_Closed(object sender, EventArgs e)
+	{
+		SettingsSerializer.UpdateAppSettings(SettingsVM.AppSettings);
+	}
 }
