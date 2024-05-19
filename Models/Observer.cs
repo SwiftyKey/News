@@ -1,5 +1,4 @@
 ﻿using CodeHollow.FeedReader;
-using News.Models.Entities;
 using News.ViewModels.Services;
 
 namespace News.Models;
@@ -7,14 +6,11 @@ namespace News.Models;
 public static class Observer
 {
 	public static TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 30);
-	public static User CurrentUser { get; set; } = null!;
 	public static FeedService FeedService { get; set; } = null!;
 
 	public static async Task Update()
 	{
-		if (CurrentUser.Sources is null) return;
-
-		foreach (var source in CurrentUser.Sources)
+		/*foreach (var source in Sources)
 		{
 			var feed = await FeedReader.ReadAsync(source.Url);
 
@@ -37,6 +33,6 @@ public static class Observer
 			}
 		}
 
-		Thread.Sleep(UpdateFreq.ToTimeSpan());
+		Thread.Sleep(UpdateFreq.ToTimeSpan());*/
 	}
 }

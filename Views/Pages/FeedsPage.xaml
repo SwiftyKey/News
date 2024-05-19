@@ -79,7 +79,6 @@
                             PreviewMouseWheel="SVScrollReadLater_PreviewMouseWheel">
                             <ListBox
                                 x:Name="LBReadLater"
-                                ItemsSource="{Binding FeedsReadLater}"
                                 Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
                                 HorizontalContentAlignment="Center">
                                 <ListBox.ItemTemplate>
@@ -125,7 +124,6 @@
                             PreviewMouseWheel="SVScrollFavourites_PreviewMouseWheel">
                             <ListBox
                                 x:Name="LBFavourites"
-                                ItemsSource="{Binding FeedsFavourites}"
                                 Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
                                 HorizontalContentAlignment="Center">
                                 <ListBox.ItemTemplate>

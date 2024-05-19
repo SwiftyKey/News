@@ -24,13 +24,13 @@
                 <ui:AppBarToggleButton
                     x:Name="BtnAddToFavourite"
                     Label="В избранное"
-                    IsChecked="{Binding IsFavourite}"
+                    IsChecked="{Binding CurrentFeed.IsFavourite}"
                     Command="{Binding FavouriteCommand}"
                     CommandParameter="{Binding IsChecked,RelativeSource={RelativeSource Self}}"/>
                 <ui:AppBarToggleButton
                     x:Name="BtnAddToReadLater"
                     Label="Отложить"
-                    IsChecked="{Binding IsAddToReadLater}"
+                    IsChecked="{Binding CurrentFeed.IsReadLater}"
                     Command="{Binding ReadLaterCommand}"
                     CommandParameter="{Binding IsChecked,RelativeSource={RelativeSource Self}}"/>
                 <ui:AppBarButton
