@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         xmlns:local="clr-namespace:News.Views.Windows"
         xmlns:entities="clr-namespace:News.Models.Entities"
         d:DataContext="{d:DesignInstance Type=entities:Feed}"
@@ -19,29 +19,28 @@
     <Grid>
         <Border
             Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
-            <ui:SimpleStackPanel>
-                <ui:CommandBar
-                    Margin="0,30,0,0"
-                    Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
-                    <ui:AppBarToggleButton
-                        x:Name="BtnAddToFavourite"
-                        Label="В избранное"/>
+            <ui:CommandBar
+                Margin="0,30,0,0"
+                Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}">
+                <ui:AppBarToggleButton
+                    x:Name="BtnAddToFavourite"
+                    Label="В избранное"
+                    />
 
-                    <ui:AppBarToggleButton
-                        x:Name="BtnAddToReadLater"
-                        Label="Отложить"/>
+                <ui:AppBarToggleButton
+                    x:Name="BtnAddToReadLater"
+                    Label="Отложить"/>
 
-                    <ui:AppBarButton
-                        x:Name="BtnCopyLink"
-                        Label="Копировать ссылку"
-                        Icon="Copy"/>
-                </ui:CommandBar>
-                <DockPanel LastChildFill="True">
-                    <cefSharp:ChromiumWebBrowser
-                        x:Name="CWBFeedViewer"
-                        Address="https://github.com/cefsharp/CefSharp/wiki/Frequently-asked-questions" />
-                </DockPanel>
-            </ui:SimpleStackPanel>
+                <ui:AppBarButton
+                    x:Name="BtnCopyLink"
+                    Label="Копировать ссылку"
+                    Icon="Copy"
+                    />
+            </ui:CommandBar>
         </Border>
+        <wv2:WebView2
+            x:Name="WVFeedViewer"
+            Source="{Binding Link}"
+            Margin="0,72,0,0"/>
     </Grid>
 </fw:AcrylicWindow>
