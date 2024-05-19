@@ -17,21 +17,33 @@ public class UserService(UserRepository userRepository)
 		await userRepository.SaveChangesAsync();
 	}
 
-	public async Task AddSourceByUserId(Source source, int userId)
+	public async Task AddSourceByUserIdAsync(Source source, int userId)
 	{
 		userRepository.AddSourceByUserId(source, userId);
 		await userRepository.SaveChangesAsync();
 	}
 
-	public async Task AddFeedToFavouriteByUserId(Feed feed, int userId)
+	public async Task AddFeedToFavouriteByUserIdAsync(Feed feed, int userId)
 	{
 		userRepository.AddFeedToFavouriteByUserId(feed, userId);
 		await userRepository.SaveChangesAsync();
 	}
 
-	public async Task AddFeedToReadLaterByUserId(Feed feed, int userId)
+	public async Task AddFeedToReadLaterByUserIdAsync(Feed feed, int userId)
 	{
 		userRepository.AddFeedToReadLaterByUserId(feed, userId);
+		await userRepository.SaveChangesAsync();
+	}
+
+	public async Task DeleteFeedFromFavouritesByUserIdAsync(Feed feed, int userId)
+	{
+		userRepository.DeleteFeedFromFavouritesByUserId(feed, userId);
+		await userRepository.SaveChangesAsync();
+	}
+
+	public async Task DeleteFeedFromReadLaterByUserIdAsync(Feed feed, int userId)
+	{
+		userRepository.DeleteFeedFromReadLaterByUserId(feed, userId);
 		await userRepository.SaveChangesAsync();
 	}
 

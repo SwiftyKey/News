@@ -17,6 +17,10 @@ public class User : BaseEntity
 		}
 	}
 	public List<Source> Sources { get; set; } = [];
+
 	public List<Feed> FeedsFavourites { get; set; } = [];
+	public List<Favourites> Favourites { get; set; } = [];
+
 	public List<Feed> FeedsReadLater { get; set; } = [];
+	public List<ReadLater> ReadLater { get; set; } = [];
 }

@@ -16,4 +16,8 @@ public class UserRepository : BaseRepository<User>
 	public void AddFeedToFavouriteByUserId(Feed feed, int userId) => GetById(userId).FeedsFavourites.Add(feed);
 
 	public void AddFeedToReadLaterByUserId(Feed feed, int userId) => GetById(userId).FeedsReadLater.Add(feed);
+
+	public void DeleteFeedFromFavouritesByUserId(Feed feed, int userId) => GetById(userId).FeedsFavourites.Remove(feed);
+
+	public void DeleteFeedFromReadLaterByUserId(Feed feed, int userId) => GetById(userId).FeedsReadLater.Remove(feed);
 }

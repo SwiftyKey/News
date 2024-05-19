@@ -26,5 +26,47 @@ public class AppContext : DbContext
 		modelBuilder.ApplyConfiguration(new UserConfig());
 		modelBuilder.ApplyConfiguration(new FeedConfig());
 		modelBuilder.ApplyConfiguration(new SourceConfig());
+
+		modelBuilder
+			.Entity<Feed>()
+			.HasMany(f => f.UsersFavourites)
+			.WithMany(u => u.FeedsFavourites)
+			.UsingEntity<Favourites>
+			(
+				j => j
+					.HasOne(fj => fj.User)
+					.WithMany(u => u.Favourites)
+					.HasForeignKey(fj => fj.UserId),
+				j => j
+					.HasOne(fj => fj.Feed)
+					.WithMany(f => f.Favourites)
+					.HasForeignKey(fj => fj.FeedId),
+				j =>
+				{
+					j.HasKey(t => new { t.UserId, t.FeedId });
+					j.ToTable("Favourites");
+				}
+			);
+
+		modelBuilder
+			.Entity<Feed>()
+			.HasMany(f => f.UsersReadLater)
+			.WithMany(u => u.FeedsReadLater)
+			.UsingEntity<ReadLater>
+			(
+				j => j
+					.HasOne(fj => fj.User)
+					.WithMany(u => u.ReadLater)
+					.HasForeignKey(fj => fj.UserId),
+				j => j
+					.HasOne(fj => fj.Feed)
+					.WithMany(f => f.ReadLater)
+					.HasForeignKey(fj => fj.FeedId),
+				j =>
+				{
+					j.HasKey(t => new { t.UserId, t.FeedId });
+					j.ToTable("ReadLater");
+				}
+			);
 	}
 }
