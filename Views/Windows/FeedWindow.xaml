@@ -38,6 +38,10 @@
                     Label="Копировать ссылку"
                     Icon="Copy"
                     Command="{Binding CopyLinkCommand}"/>
+                <ui:AppBarButton
+                    x:Name="BtnOpenLink"
+                    Label="Открыть в браузер"
+                    Command="{Binding OpenLinkCommand}"/>
             </ui:CommandBar>
         </Border>
         <wv2:WebView2

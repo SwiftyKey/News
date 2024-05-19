@@ -1,6 +1,7 @@
 ﻿using News.Models.Common;
 using News.Models.Entities;
 using News.Utilities;
+using System.Diagnostics;
 using System.Windows;
 
 namespace News.ViewModels;
@@ -45,6 +46,18 @@ public class FeedWindowVM(Feed feed) : BaseViewModel
 			return copyLinkCommand ??= new RelayCommand(_ =>
 			{
 				Clipboard.SetText(CurrentFeed.Link);
+			});
+		}
+	}
+
+	private RelayCommand? openLinkCommand;
+	public RelayCommand? OpenLinkCommand
+	{
+		get
+		{
+			return openLinkCommand ??= new RelayCommand(_ =>
+			{
+				Process.Start(new ProcessStartInfo(CurrentFeed.Link) { UseShellExecute = true });
 			});
 		}
 	}
