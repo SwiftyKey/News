@@ -23,12 +23,6 @@ public class FeedConfig : IEntityTypeConfiguration<Feed>
 		builder
 			.Property(f => f.PublishingDate);
 		builder
-			.HasMany(f => f.UsersFavourites)
-			.WithMany(u => u.FeedsFavourites);
-		builder
-			.HasMany(f => f.UsersReadLater)
-			.WithMany(u => u.FeedsReadLater);
-		builder
 			.HasOne(f => f.Source)
 			.WithMany(s => s.Feeds)
 			.HasForeignKey(f => f.SourceId)

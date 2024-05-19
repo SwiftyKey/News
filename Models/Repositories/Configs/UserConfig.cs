@@ -16,11 +16,5 @@ public class UserConfig : IEntityTypeConfiguration<User>
 		builder
 			.HasIndex(u => u.HashPassword)
 			.IsUnique();
-		builder
-			.HasMany(u => u.FeedsFavourites)
-			.WithMany(f => f.UsersFavourites);
-		builder
-			.HasMany(u => u.FeedsReadLater)
-			.WithMany(f => f.UsersReadLater);
 	}
 }

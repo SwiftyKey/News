@@ -63,7 +63,7 @@ public class ApplicationVM : BaseViewModel
 					source.ImageUrl = reader.ImageUrl;
 
 					_ = SourceService.AddAsync(source);
-					_ = UserService.AddSourceByUserId(source, CurrentUser.Id);
+					_ = UserService.AddSourceByUserIdAsync(source, CurrentUser.Id);
 					_ = FeedService.AddRangeAsyncBySource(source);
 				}
 			});
