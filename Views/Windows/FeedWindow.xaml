@@ -7,13 +7,12 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
-        xmlns:local="clr-namespace:News.Views.Windows"
-        xmlns:entities="clr-namespace:News.Models.Entities"
-        d:DataContext="{d:DesignInstance Type=entities:Feed}"
+        xmlns:viewmodels="clr-namespace:News.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:FeedWindowVM}"
         mc:Ignorable="d"
         Height="450"
         Width="800"
-        Title="{Binding Title}"
+        Title="{Binding CurrentFeed.Title}"
         WindowStartupLocation="CenterScreen"
         ui:ThemeManager.IsThemeAware="True">
     <Grid>
@@ -25,22 +24,23 @@
                 <ui:AppBarToggleButton
                     x:Name="BtnAddToFavourite"
                     Label="В избранное"
-                    />
-
+                    IsChecked="{Binding IsFavourite}"
+                    Command="{Binding AddToFavouriteCommand}"/>
                 <ui:AppBarToggleButton
                     x:Name="BtnAddToReadLater"
-                    Label="Отложить"/>
-
+                    Label="Отложить"
+                    IsChecked="{Binding IsAddToReadLater}"
+                    Command="{Binding AddToReadLaterCommand}"/>
                 <ui:AppBarButton
                     x:Name="BtnCopyLink"
                     Label="Копировать ссылку"
                     Icon="Copy"
-                    />
+                    Command="{Binding CopyLinkCommand}"/>
             </ui:CommandBar>
         </Border>
         <wv2:WebView2
             x:Name="WVFeedViewer"
-            Source="{Binding Link}"
+            Source="{Binding CurrentFeed.Link}"
             Margin="0,72,0,0"/>
     </Grid>
 </fw:AcrylicWindow>

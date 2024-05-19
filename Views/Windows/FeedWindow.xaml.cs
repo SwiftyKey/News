@@ -1,4 +1,5 @@
 ﻿using News.Models.Entities;
+using News.ViewModels;
 using System.Windows.Media;
 
 namespace News.Views.Windows
@@ -8,14 +9,14 @@ namespace News.Views.Windows
 	/// </summary>
 	public partial class FeedWindow
 	{
-		public Feed Feed { get; private set; }
+		public FeedWindowVM FeedWindowVM { get; private set; }
 
-		public FeedWindow(Feed feed)
+		public FeedWindow(FeedWindowVM feedWindowVM)
 		{
 			InitializeComponent();
 			Icon = new ImageSourceConverter().ConvertFrom(Properties.Resources.WindowSidebar) as ImageSource;
-			Feed = feed;
-			DataContext = Feed;
+			FeedWindowVM = feedWindowVM;
+			DataContext = FeedWindowVM;
 		}
 	}
 }

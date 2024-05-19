@@ -41,32 +41,32 @@ public class ApplicationVM : BaseViewModel
 		get
 		{
 			return addSourceCommand ??= new RelayCommand((o) =>
+			{
+				AddSourcesWindow addSourcesWindow = new(new Source());
+
+				if (addSourcesWindow.ShowDialog() == true)
 				{
-					AddSourcesWindow addSourcesWindow = new(new Source());
+					Source source = addSourcesWindow.Source;
 
-					if (addSourcesWindow.ShowDialog() == true)
-					{
-						Source source = addSourcesWindow.Source;
+					string sourceUrl = "";
+					var sources = FeedReader.GetFeedUrlsFromUrlAsync(addSourcesWindow.TBSourceLink.Text).Result;
 
-						string sourceUrl = "";
-						var sources = FeedReader.GetFeedUrlsFromUrlAsync(addSourcesWindow.TBSourceLink.Text).Result;
+					if (!sources.Any())
+						sourceUrl = addSourcesWindow.TBSourceLink.Text;
+					else
+						sourceUrl = sources.First().Url;
 
-						if (!sources.Any())
-							sourceUrl = addSourcesWindow.TBSourceLink.Text;
-						else
-							sourceUrl = sources.First().Url;
+					var reader = FeedReader.ReadAsync(sourceUrl).Result;
+					source.Url = sourceUrl;
+					source.Title = reader.Title;
+					source.Description = reader.Description;
+					source.ImageUrl = reader.ImageUrl;
 
-						var reader = FeedReader.ReadAsync(sourceUrl).Result;
-						source.Url = sourceUrl;
-						source.Title = reader.Title;
-						source.Description = reader.Description;
-						source.ImageUrl = reader.ImageUrl;
-
-						_ = SourceService.AddAsync(source);
-						_ = UserService.AddSourceByUserId(source, CurrentUser.Id);
-						_ = FeedService.AddRangeAsyncBySource(source);
-					}
-				});
+					_ = SourceService.AddAsync(source);
+					_ = UserService.AddSourceByUserId(source, CurrentUser.Id);
+					_ = FeedService.AddRangeAsyncBySource(source);
+				}
+			});
 		}
 	}
 
@@ -76,11 +76,11 @@ public class ApplicationVM : BaseViewModel
 		get
 		{
 			return removeSourceCommand ??= new RelayCommand((selectedItem) =>
-				{
-					Source? source = selectedItem as Source;
-					if (source is null) return;
-					_ = SourceService.DeleteAsync(source);
-				});
+			{
+				Source? source = selectedItem as Source;
+				if (source is null) return;
+				_ = SourceService.DeleteAsync(source);
+			});
 		}
 	}
 
@@ -90,11 +90,13 @@ public class ApplicationVM : BaseViewModel
 		get
 		{
 			return viewFeedCommand ??= new RelayCommand((selectedItem) => 
-				{
-					Models.Entities.Feed? feed = selectedItem as Models.Entities.Feed;
-					FeedWindow feedWindow = new (feed);
-					feedWindow.Show();
-				});
+			{
+				if (selectedItem is null) return;
+
+				Models.Entities.Feed? feed = selectedItem as Models.Entities.Feed;
+				FeedWindow feedWindow = new (new FeedWindowVM(feed));
+				feedWindow.Show();
+			});
 		}
 	}
 }

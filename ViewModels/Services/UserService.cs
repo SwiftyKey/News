@@ -23,6 +23,18 @@ public class UserService(UserRepository userRepository)
 		await userRepository.SaveChangesAsync();
 	}
 
+	public async Task AddFeedToFavouriteByUserId(Feed feed, int userId)
+	{
+		userRepository.AddFeedToFavouriteByUserId(feed, userId);
+		await userRepository.SaveChangesAsync();
+	}
+
+	public async Task AddFeedToReadLaterByUserId(Feed feed, int userId)
+	{
+		userRepository.AddFeedToReadLaterByUserId(feed, userId);
+		await userRepository.SaveChangesAsync();
+	}
+
 	public IEnumerable<User> GetAll()
 	{
 		return userRepository.GetAll();
