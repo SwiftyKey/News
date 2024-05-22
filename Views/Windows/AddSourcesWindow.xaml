@@ -11,6 +11,7 @@
         Title="Добавление источников"
         WindowStartupLocation="CenterScreen"
         ui:ThemeManager.IsThemeAware="True"
+        Icon="/Images/WindowSidebar.ico"
         ResizeMode="CanMinimize"
         Height="130"
         Width="600">

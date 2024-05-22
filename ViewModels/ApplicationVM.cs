@@ -1,5 +1,6 @@
 ﻿using CodeHollow.FeedReader;
 using Microsoft.EntityFrameworkCore;
+using News.Models;
 using News.Models.Common;
 using News.Models.Entities;
 using News.Models.Repositories;
@@ -14,12 +15,14 @@ namespace News.ViewModels;
 
 public class ApplicationVM : BaseChanged
 {
-	public static Models.Repositories.AppContext DB { get; set; } = new();
-	public static FeedService FeedService { get; set; } = new(new FeedRepository(DB));
-	public static SourceService SourceService { get; set; } = new(new SourceRepository(DB));
+	public static Models.Repositories.AppContext DB { get; set; } = new ();
+	public static FeedService FeedService { get; set; } = new (new FeedRepository(DB));
+	public static SourceService SourceService { get; set; } = new (new SourceRepository(DB));
 
 	public ObservableCollection<Source> Sources { get; set; } = [];
 	public ObservableCollection<Models.Entities.Feed> Feeds { get; set; } = [];
+
+	public static Observer Observer { get; set; } = new (new FeedService (new FeedRepository(DB)));
 
 	public ApplicationVM()
 	{
@@ -37,7 +40,7 @@ public class ApplicationVM : BaseChanged
 		{
 			return addSourceCommand ??= new RelayCommand((o) =>
 			{
-				AddSourcesWindow addSourcesWindow = new();
+				var addSourcesWindow = new AddSourcesWindow();
 
 				if (addSourcesWindow.ShowDialog() == true)
 				{

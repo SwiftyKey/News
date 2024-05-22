@@ -8,7 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- FluentWPF Controls -->
                 <ResourceDictionary Source="/FluentWPF;component/Styles/Controls.xaml" />
-
+                
                 <ui:ThemeResources>
                     <ui:ThemeResources.ThemeDictionaries>
                         <ResourceDictionary x:Key="Light">

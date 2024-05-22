@@ -11,7 +11,6 @@ namespace News.Views.Windows
 		public AddSourcesWindow()
 		{
 			InitializeComponent();
-			Icon = new ImageSourceConverter().ConvertFrom(Properties.Resources.WindowSidebar) as ImageSource;
 		}
 
 		private void BtnSearch_Click(object sender, RoutedEventArgs e)

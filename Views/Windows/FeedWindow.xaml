@@ -10,6 +10,7 @@
         xmlns:viewmodels="clr-namespace:News.ViewModels"
         d:DataContext="{d:DesignInstance Type=viewmodels:FeedWindowVM}"
         mc:Ignorable="d"
+        Icon="/Images/WindowSidebar.ico"
         Height="450"
         Width="800"
         Title="{Binding CurrentFeed.Title}"

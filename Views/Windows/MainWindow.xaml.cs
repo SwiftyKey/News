@@ -1,24 +1,46 @@
-﻿using ModernWpf.Controls;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using ModernWpf.Controls;
 using News.Settings;
 using News.ViewModels;
 using News.Views.Pages;
-using System.Windows.Media;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace News;
 
 public partial class MainWindow
 {
-	LinkedList<NavigationViewItem> History { get; set; }
-	bool IsGoBack { get; set; } = false;
+	private LinkedList<NavigationViewItem> History { get; set; }
+	private bool IsGoBack { get; set; } = false;
 
 	public MainWindow()
 	{
 		InitializeComponent();
+
 		DataContext = new ApplicationVM();
 
 		History = [];
 		NavView.SelectedItem = NVItemAllNews;
-		Icon = new ImageSourceConverter().ConvertFrom(Properties.Resources.WindowSidebar) as ImageSource;
+
+		var timer = new DispatcherTimer
+		{
+			Interval = ApplicationVM.Observer.UpdateFreq.ToTimeSpan()
+		};
+		timer.Tick += timer_Tick;
+		timer.Start();
+	}
+
+	private void timer_Tick(object sender, EventArgs e)
+	{
+		var builder = new ToastContentBuilder()
+			.AddText("Уведомление")
+			.AddButton
+			(
+				new ToastButton()
+					.SetContent("Прочитать")
+					.SetBackgroundActivation()
+			);
+		builder.Show();
 	}
 
 	private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -61,5 +83,16 @@ public partial class MainWindow
 	private void Window_Closed(object sender, EventArgs e)
 	{
 		SettingsSerializer.UpdateAppSettings(SettingsVM.AppSettings);
+	}
+
+	private void Window_StateChanged(object sender, EventArgs e)
+	{
+		if (WindowState == WindowState.Minimized)
+			Hide();
+	}
+
+	private void TaskBar_TrayLeftMouseDown(object sender, EventArgs e)
+	{
+		Show();
 	}
 }

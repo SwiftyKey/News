@@ -3,12 +3,12 @@ using News.ViewModels.Services;
 
 namespace News.Models;
 
-public static class Observer
+public class Observer(FeedService feedService)
 {
-	public static TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 30);
-	public static FeedService FeedService { get; set; } = null!;
+	public TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 1);
+	public FeedService FeedService { get; set; } = feedService;
 
-	public static async Task Update()
+	public async Task Update()
 	{
 		/*foreach (var source in Sources)
 		{
