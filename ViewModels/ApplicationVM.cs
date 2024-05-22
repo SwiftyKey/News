@@ -15,14 +15,14 @@ namespace News.ViewModels;
 
 public class ApplicationVM : BaseChanged
 {
-	public static Models.Repositories.AppContext DB { get; set; } = new ();
+	public static Models.Repositories.AppContext DB { get; set; } = new();
 	public static FeedService FeedService { get; set; } = new (new FeedRepository(DB));
 	public static SourceService SourceService { get; set; } = new (new SourceRepository(DB));
 
-	public ObservableCollection<Source> Sources { get; set; } = [];
+	public static ObservableCollection<Source> Sources { get; set; } = [];
 	public ObservableCollection<Models.Entities.Feed> Feeds { get; set; } = [];
 
-	public static Observer Observer { get; set; } = new (new FeedService (new FeedRepository(DB)));
+	public static Observer Observer { get; set; } = new();
 
 	public ApplicationVM()
 	{
