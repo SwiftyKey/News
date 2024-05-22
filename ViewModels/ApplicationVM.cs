@@ -7,6 +7,8 @@ using News.Utilities;
 using News.ViewModels.Services;
 using News.Views.Windows;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Xml;
 
 namespace News.ViewModels;
 
@@ -41,28 +43,35 @@ public class ApplicationVM : BaseChanged
 				{
 					string sourceUrl = addSourcesWindow.TBSourceLink.Text;
 
-					var sources = FeedReader.GetFeedUrlsFromUrlAsync(sourceUrl).Result;
-
-					if (sources.Any())
-						sourceUrl = sources.First().Url;
-
-					if (Sources.Any(s => s.Url == sourceUrl)) return;
-
-					var reader = FeedReader.ReadAsync(sourceUrl);
-					reader.ConfigureAwait(false);
-					var result = reader.Result;
-
-					var source = new Source
+					try
 					{
-						Url = sourceUrl,
-						Title = result.Title,
-						Description = result.Description,
-						ImageUrl = result.ImageUrl
-					};
+						var sources = FeedReader.GetFeedUrlsFromUrlAsync(sourceUrl).Result;
 
-					_ = SourceService.AddAsync(source);
+						if (Sources.Any(s => s.Url == sourceUrl)) return;
 
-					_ = FeedService.AddRangeAsyncBySource(source);
+						var result = FeedReader.ReadAsync(sourceUrl).Result;
+
+						var source = new Source
+						{
+							Url = sourceUrl,
+							Title = result.Title,
+							Description = result.Description,
+							ImageUrl = result.ImageUrl
+						};
+
+						_ = SourceService.AddAsync(source);
+
+						_ = FeedService.AddRangeAsyncBySource(source);
+					}
+					catch (XmlException ex)
+					{
+						MessageBox.Show("Данная RSS-ссылка не поддерживается");
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show("Не нашлось подходящих результатов");
+						return;
+					}
 				}
 			});
 		}
