@@ -7,8 +7,6 @@
         xmlns:local="clr-namespace:News.Views.Windows"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-        xmlns:entities="clr-namespace:News.Models.Entities"
-        d:DataContext="{d:DesignInstance Type=entities:Source}"
         mc:Ignorable="d"
         Title="Добавление источников"
         WindowStartupLocation="CenterScreen"
@@ -27,8 +25,7 @@
                     <TextBox
                         x:Name="TBSourceLink"
                         ui:ControlHelper.Header="RSS-ссылка, Ссылка на сайт"
-                        Width="418"
-                        Text="{Binding Url}"/>
+                        Width="418"/>
                     <Button
                         x:Name="BtnSearch"
                         Height="31"

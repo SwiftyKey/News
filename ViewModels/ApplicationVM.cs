@@ -35,30 +35,33 @@ public class ApplicationVM : BaseChanged
 		{
 			return addSourceCommand ??= new RelayCommand((o) =>
 			{
-				AddSourcesWindow addSourcesWindow = new(new Source());
+				AddSourcesWindow addSourcesWindow = new();
 
 				if (addSourcesWindow.ShowDialog() == true)
 				{
-					Source source = addSourcesWindow.Source;
+					string sourceUrl = addSourcesWindow.TBSourceLink.Text;
 
-					string sourceUrl = "";
-					var sources = FeedReader.GetFeedUrlsFromUrlAsync(addSourcesWindow.TBSourceLink.Text).Result;
+					var sources = FeedReader.GetFeedUrlsFromUrlAsync(sourceUrl).Result;
 
-					if (!sources.Any())
-						sourceUrl = addSourcesWindow.TBSourceLink.Text;
-					else
+					if (sources.Any())
 						sourceUrl = sources.First().Url;
+
+					if (Sources.Any(s => s.Url == sourceUrl)) return;
 
 					var reader = FeedReader.ReadAsync(sourceUrl);
 					reader.ConfigureAwait(false);
 					var result = reader.Result;
 
-					source.Url = sourceUrl;
-					source.Title = result.Title;
-					source.Description = result.Description;
-					source.ImageUrl = result.ImageUrl;
+					var source = new Source
+					{
+						Url = sourceUrl,
+						Title = result.Title,
+						Description = result.Description,
+						ImageUrl = result.ImageUrl
+					};
 
 					_ = SourceService.AddAsync(source);
+
 					_ = FeedService.AddRangeAsyncBySource(source);
 				}
 			});

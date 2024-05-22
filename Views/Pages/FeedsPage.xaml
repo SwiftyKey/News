@@ -5,10 +5,63 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:News.Views.Pages"
       xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
       xmlns:viewmodels="clr-namespace:News.ViewModels"
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       d:DataContext="{d:DesignInstance Type=viewmodels:ApplicationVM}"
       mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <CollectionViewSource
+                x:Key="SortedAllFeeds"
+                Source="{Binding Feeds}"
+                IsLiveSortingRequested="True">
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription
+                        PropertyName="PublishingDate"
+                        Direction="Descending"/>
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
+            <CollectionViewSource
+                x:Key="FavouritesFeeds"
+                Source="{Binding Feeds}"
+                xmlns:me="clr-namespace:News.Views.MarkupExtensions"
+                IsLiveFilteringRequested="True"
+                IsLiveSortingRequested="True">
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription
+                        PropertyName="PublishingDate"
+                        Direction="Descending"/>
+                </CollectionViewSource.SortDescriptions>
+                <CollectionViewSource.Filter>
+                    <me:Filter>
+                        <me:PropertyFilter
+                            PropertyName="IsFavourite"
+                            Value="True"/>
+                    </me:Filter>
+                </CollectionViewSource.Filter>
+            </CollectionViewSource>
+            <CollectionViewSource
+                x:Key="ReadLaterFeeds"
+                Source="{Binding Feeds}"
+                xmlns:me="clr-namespace:News.Views.MarkupExtensions"
+                IsLiveFilteringRequested="True"
+                IsLiveSortingRequested="True">
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription
+                        PropertyName="PublishingDate"
+                        Direction="Descending"/>
+                </CollectionViewSource.SortDescriptions>
+                <CollectionViewSource.Filter>
+                    <me:Filter>
+                        <me:PropertyFilter
+                            PropertyName="IsFavourite"
+                            Value="True"/>
+                    </me:Filter>
+                </CollectionViewSource.Filter>
+            </CollectionViewSource>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
         <ui:Frame
             x:Name="feedsFrame"
@@ -33,7 +86,7 @@
                             PreviewMouseWheel="SVScrollMain_PreviewMouseWheel">
                             <ListBox
                                 x:Name="LBFeeds"
-                                ItemsSource="{Binding Feeds}"
+                                ItemsSource="{Binding Source={StaticResource SortedAllFeeds}}"
                                 Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
                                 HorizontalContentAlignment="Center">
                                 <ListBox.ItemTemplate>
@@ -79,6 +132,7 @@
                             PreviewMouseWheel="SVScrollReadLater_PreviewMouseWheel">
                             <ListBox
                                 x:Name="LBReadLater"
+                                ItemsSource="{Binding Source={StaticResource ReadLaterFeeds}}"
                                 Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
                                 HorizontalContentAlignment="Center">
                                 <ListBox.ItemTemplate>
@@ -124,6 +178,7 @@
                             PreviewMouseWheel="SVScrollFavourites_PreviewMouseWheel">
                             <ListBox
                                 x:Name="LBFavourites"
+                                ItemsSource="{Binding Source={StaticResource FavouritesFeeds}}"
                                 Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
                                 HorizontalContentAlignment="Center">
                                 <ListBox.ItemTemplate>

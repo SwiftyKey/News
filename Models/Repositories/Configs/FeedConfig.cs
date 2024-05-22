@@ -17,9 +17,6 @@ public class FeedConfig : IEntityTypeConfiguration<Feed>
 			.Property(f => f.Link)
 			.IsRequired();
 		builder
-			.Property(f => f.Description)
-			.IsRequired();
-		builder
 			.Property(f => f.PublishingDate);
 		builder
 			.Property(f => f.IsFavourite);

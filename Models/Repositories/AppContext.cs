@@ -11,7 +11,7 @@ public class AppContext : DbContext
 
 	public AppContext()
 	{
-		//Database.EnsureDeleted();
+		Database.EnsureDeleted();
 		Database.EnsureCreated();
 	}
 

@@ -29,7 +29,6 @@ public class FeedService(FeedRepository feedRepository)
 			{
 				Title = item.Title,
 				Link = item.Link,
-				Description = item.Description,
 				PublishingDate = item.PublishingDate,
 				Source = source
 			})
