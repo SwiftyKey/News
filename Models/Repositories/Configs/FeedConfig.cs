@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using News.Models.Entities;
 
 namespace News.Models.Repositories.Configs;
@@ -18,10 +17,11 @@ public class FeedConfig : IEntityTypeConfiguration<Feed>
 			.Property(f => f.Link)
 			.IsRequired();
 		builder
-			.Property(f => f.Description)
-			.IsRequired();
-		builder
 			.Property(f => f.PublishingDate);
+		builder
+			.Property(f => f.IsFavourite);
+		builder
+			.Property(f => f.IsReadLater);
 		builder
 			.HasOne(f => f.Source)
 			.WithMany(s => s.Feeds)

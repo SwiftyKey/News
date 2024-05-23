@@ -1,43 +1,14 @@
 ﻿using News.Models.Common;
 using News.Models.Entities;
 using News.Utilities;
+using System.Diagnostics;
 using System.Windows;
 
 namespace News.ViewModels;
 
-public class FeedWindowVM : BaseViewModel
+public class FeedWindowVM(Feed feed) : BaseChanged
 {
-	public Feed CurrentFeed { get; set; }
-
-	private bool isFavourite;
-	public bool IsFavourite
-	{
-		get => isFavourite;
-		set
-		{
-			isFavourite = value;
-			OnPropertyChanged(nameof(IsFavourite));
-		}
-	}
-
-	private bool isAddToReadLater;
-	public bool IsAddToReadLater
-	{
-		get => isAddToReadLater;
-		set
-		{
-			isAddToReadLater = value;
-			OnPropertyChanged(nameof(IsAddToReadLater));
-		}
-	}
-
-	public FeedWindowVM(Feed feed)
-	{
-		CurrentFeed = feed;
-
-		IsFavourite = ApplicationVM.CurrentUser.FeedsFavourites.Any(f => f.Id == feed.Id);
-		IsAddToReadLater = ApplicationVM.CurrentUser.FeedsReadLater.Any(f => f.Id == feed.Id);
-	}
+	public Feed CurrentFeed { get; set; } = feed;
 
 	private RelayCommand? favouriteCommand;
 	public RelayCommand? FavouriteCommand
@@ -47,10 +18,8 @@ public class FeedWindowVM : BaseViewModel
 			return favouriteCommand ??= new RelayCommand((state) =>
 			{
 				if (state is null) return;
-				if ((bool)state)
-					_ = ApplicationVM.UserService.AddFeedToFavouriteByUserIdAsync(CurrentFeed, ApplicationVM.CurrentUser.Id);
-				else
-					_ = ApplicationVM.UserService.DeleteFeedFromFavouritesByUserIdAsync(CurrentFeed, ApplicationVM.CurrentUser.Id);
+				CurrentFeed.IsFavourite = (bool)state;
+				_ = ApplicationVM.FeedService.UpdateAsync(CurrentFeed);
 			});
 		}
 	}
@@ -63,10 +32,8 @@ public class FeedWindowVM : BaseViewModel
 			return readLaterCommand ??= new RelayCommand((state) =>
 			{
 				if (state is null) return;
-				if ((bool)state)
-					_ = ApplicationVM.UserService.AddFeedToReadLaterByUserIdAsync(CurrentFeed, ApplicationVM.CurrentUser.Id);
-				else
-					_ = ApplicationVM.UserService.DeleteFeedFromReadLaterByUserIdAsync(CurrentFeed, ApplicationVM.CurrentUser.Id);
+				CurrentFeed.IsReadLater = (bool)state;
+				_ = ApplicationVM.FeedService.UpdateAsync(CurrentFeed);
 			});
 		}
 	}
@@ -79,6 +46,18 @@ public class FeedWindowVM : BaseViewModel
 			return copyLinkCommand ??= new RelayCommand(_ =>
 			{
 				Clipboard.SetText(CurrentFeed.Link);
+			});
+		}
+	}
+
+	private RelayCommand? openLinkCommand;
+	public RelayCommand? OpenLinkCommand
+	{
+		get
+		{
+			return openLinkCommand ??= new RelayCommand(_ =>
+			{
+				Process.Start(new ProcessStartInfo(CurrentFeed.Link) { UseShellExecute = true });
 			});
 		}
 	}

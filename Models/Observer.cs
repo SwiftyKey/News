@@ -1,42 +1,52 @@
 ﻿using CodeHollow.FeedReader;
-using News.Models.Entities;
+using Microsoft.Toolkit.Uwp.Notifications;
+using News.Models.Repositories;
+using News.ViewModels;
 using News.ViewModels.Services;
 
 namespace News.Models;
 
-public static class Observer
+public class Observer
 {
-	public static TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 30);
-	public static User CurrentUser { get; set; } = null!;
-	public static FeedService FeedService { get; set; } = null!;
+	public TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 10);
+	public FeedService FeedService { get; set; } = new FeedService(new FeedRepository(ApplicationVM.DB));
 
-	public static async Task Update()
+	public async Task Update()
 	{
-		if (CurrentUser.Sources is null) return;
-
-		foreach (var source in CurrentUser.Sources)
+		foreach (var source in ApplicationVM.Sources)
 		{
-			var feed = await FeedReader.ReadAsync(source.Url);
+			var reader = await FeedReader.ReadAsync(source.Url);
 
-			foreach (var item in feed.Items)
+			foreach (var item in reader.Items)
 			{
 				var result = FeedService.GetByUrl(item.Link);
 
 				if (result is null)
 				{
-					var newFeed = new Entities.Feed() {
+					var newFeed = new Entities.Feed()
+					{
 						Title = item.Title,
 						Link = item.Link,
-						Description = item.Description,
 						PublishingDate = item.PublishingDate,
 						Source = source
 					};
 
-					await FeedService.AddAsync(newFeed);
+					var addedFeed = await FeedService.AddAsync(newFeed);
+
+					if (SettingsVM.AppSettings.NotificationsOn)
+						await ViewNotification(addedFeed);
 				}
 			}
 		}
+	}
 
-		Thread.Sleep(UpdateFreq.ToTimeSpan());
+	public static async Task ViewNotification(Entities.Feed feed)
+	{
+		var builder = new ToastContentBuilder()
+			.AddArgument("Action", "ViewFeed")
+			.AddArgument("FeedId", feed.Id)
+			.AddText(feed.Source.Title)
+			.AddText(feed.Title);
+		builder.Show();
 	}
 }

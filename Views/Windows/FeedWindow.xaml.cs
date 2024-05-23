@@ -14,7 +14,6 @@ namespace News.Views.Windows
 		public FeedWindow(FeedWindowVM feedWindowVM)
 		{
 			InitializeComponent();
-			Icon = new ImageSourceConverter().ConvertFrom(Properties.Resources.WindowSidebar) as ImageSource;
 			FeedWindowVM = feedWindowVM;
 			DataContext = FeedWindowVM;
 		}

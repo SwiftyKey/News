@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace News.Models.Common;
+﻿namespace News.Models.Common;
 
 public interface IWriteRepository<TEntity> where TEntity : BaseEntity
 {

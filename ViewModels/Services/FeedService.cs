@@ -6,10 +6,11 @@ namespace News.ViewModels.Services;
 
 public class FeedService(FeedRepository feedRepository)
 {
-	public async Task AddAsync(Models.Entities.Feed feed)
+	public async Task<Models.Entities.Feed> AddAsync(Models.Entities.Feed feed)
 	{
-		await feedRepository.AddAsync(feed);
+		var addedFeed = await feedRepository.AddAsync(feed);
 		await feedRepository.SaveChangesAsync();
+		return addedFeed;
 	}
 
 	public async Task AddRangeAsync(IEnumerable<Models.Entities.Feed> feeds)
@@ -29,7 +30,6 @@ public class FeedService(FeedRepository feedRepository)
 			{
 				Title = item.Title,
 				Link = item.Link,
-				Description = item.Description,
 				PublishingDate = item.PublishingDate,
 				Source = source
 			})
