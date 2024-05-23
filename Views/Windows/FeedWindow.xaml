@@ -41,7 +41,7 @@
                     Command="{Binding CopyLinkCommand}"/>
                 <ui:AppBarButton
                     x:Name="BtnOpenLink"
-                    Label="Открыть в браузер"
+                    Label="Открыть в браузере"
                     Command="{Binding OpenLinkCommand}"/>
             </ui:CommandBar>
         </Border>

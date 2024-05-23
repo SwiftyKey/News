@@ -1,4 +1,5 @@
 ﻿using CodeHollow.FeedReader;
+using Microsoft.Toolkit.Uwp.Notifications;
 using News.Models.Repositories;
 using News.ViewModels;
 using News.ViewModels.Services;
@@ -7,7 +8,7 @@ namespace News.Models;
 
 public class Observer
 {
-	public TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 1);
+	public TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 10);
 	public FeedService FeedService { get; set; } = new FeedService(new FeedRepository(ApplicationVM.DB));
 
 	public async Task Update()
@@ -31,7 +32,9 @@ public class Observer
 					};
 
 					var addedFeed = await FeedService.AddAsync(newFeed);
-					await ViewNotification(addedFeed);
+
+					if (SettingsVM.AppSettings.NotificationsOn)
+						await ViewNotification(addedFeed);
 				}
 			}
 		}
@@ -39,6 +42,11 @@ public class Observer
 
 	public static async Task ViewNotification(Entities.Feed feed)
 	{
-		
+		var builder = new ToastContentBuilder()
+			.AddArgument("Action", "ViewFeed")
+			.AddArgument("FeedId", feed.Id)
+			.AddText(feed.Source.Title)
+			.AddText(feed.Title);
+		builder.Show();
 	}
 }

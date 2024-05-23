@@ -32,34 +32,7 @@ public partial class MainWindow
 
 	private void timer_Tick(object sender, EventArgs e)
 	{
-		var builder = new ToastContentBuilder()
-			.AddText("Канал")
-			.AddText("Название")
-			.AddButton
-			(
-				new ToastButton()
-					.SetContent("Отложить")
-					.SetBackgroundActivation()
-			)
-			.AddButton
-			(
-				new ToastButton()
-					.SetContent("В избранное")
-					.SetBackgroundActivation()
-			)
-			.AddButton
-			(
-				new ToastButton()
-					.SetContent("Копировать ссылку")
-					.SetBackgroundActivation()
-			)
-			.AddButton
-			(
-				new ToastButton()
-					.SetContent("Открыть в браузере")
-					.SetBackgroundActivation()
-			);
-		builder.Show();
+		_ = ApplicationVM.Observer.Update();
 	}
 
 	private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

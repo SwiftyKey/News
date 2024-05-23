@@ -94,8 +94,8 @@ public class ApplicationVM : BaseChanged
 		}
 	}
 
-	private RelayCommand? viewFeedCommand;
-	public RelayCommand? ViewFeedCommand
+	private static RelayCommand? viewFeedCommand;
+	public static RelayCommand? ViewFeedCommand
 	{
 		get
 		{
@@ -104,8 +104,11 @@ public class ApplicationVM : BaseChanged
 				if (selectedItem is null) return;
 
 				Models.Entities.Feed? feed = selectedItem as Models.Entities.Feed;
-				FeedWindow feedWindow = new (new FeedWindowVM(feed));
-				feedWindow.Show();
+				Application.Current.Dispatcher.Invoke(() =>
+				{
+					FeedWindow feedWindow = new(new FeedWindowVM(feed));
+					feedWindow.Show();
+				});
 			});
 		}
 	}

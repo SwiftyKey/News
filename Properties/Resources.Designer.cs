@@ -63,26 +63,6 @@ namespace News.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        public static byte[] Star {
-            get {
-                object obj = ResourceManager.GetObject("Star", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Byte[].
-        /// </summary>
-        public static byte[] StarFill {
-            get {
-                object obj = ResourceManager.GetObject("StarFill", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Byte[].
-        /// </summary>
         public static byte[] WindowSidebar {
             get {
                 object obj = ResourceManager.GetObject("WindowSidebar", resourceCulture);
