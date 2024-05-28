@@ -1,14 +1,33 @@
 ﻿using News.Models.Common;
 
+/**
+	\brief Пространство имен, в котором содержатся классы сущностей базы данных
+	\param Содержит классы сущностей:
+		@ref Feed
+		@ref Source
+*/
 namespace News.Models.Entities;
 
+/**
+	\brief Класс, предназначенный для создания онлайн-публикаций
+	
+	Является сущностью в базе данных.
+	Наследуется от BaseEntity
+*/
 public class Feed : BaseEntity
 {
+	/// Название публикации
 	public required string Title { get; set; }
+
+	/// Ссылка на публикаию в интернете
 	public required string Link { get; set; }
+
+	/// Дата выхода публикации
 	public DateTime? PublishingDate { get; set; }
 
+	/// Булево значение, показывающее, добавлена ли данная публикация в избранное
 	bool isFavourite = false;
+	/// Свойство для работы с isFavourite
 	public bool IsFavourite
 	{
 		get => isFavourite;
@@ -18,7 +37,10 @@ public class Feed : BaseEntity
 			OnPropertyChanged(nameof(isFavourite));
 		}
 	}
+
+	/// Булево значение, показывающее, добавлена ли данная публикация в отложенное
 	bool isReadLater = false;
+	/// Свойство для работы с isReadLater
 	public bool IsReadLater
 	{
 		get => isReadLater;
@@ -29,6 +51,8 @@ public class Feed : BaseEntity
 		}
 	}
 
+	/// Источник данной публикации
 	public Source Source { get; set; } = null!;
+	/// Внешний ключ источника
 	public int SourceId { get; set; }
 }

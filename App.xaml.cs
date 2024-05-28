@@ -1,8 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
-using News.Models.Entities;
-using News.Models.Repositories;
 using News.ViewModels;
-using News.ViewModels.Services;
 using System.Windows;
 
 namespace News;
