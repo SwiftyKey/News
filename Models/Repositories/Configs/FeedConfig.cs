@@ -2,10 +2,25 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using News.Models.Entities;
 
+/**
+	\brief Пространство имен, в котором содержатся классы конфигурации для создания таблиц в базе данных
+	\param Содержит классы:
+		@ref FeedConfig
+		@ref SourceConfig
+*/
 namespace News.Models.Repositories.Configs;
 
+/**
+	\brief Класс, предназначенный для конфигурации создания таблицы Feeds в базе данных
+	
+	Наследуется от IEntityTypeConfiguration
+*/
 public class FeedConfig : IEntityTypeConfiguration<Feed>
 {
+	/**
+		\brief Метод, конфигурирующий создание таблицы Feeds
+		\param[in] builder Билдер сущности Feed
+	*/
 	public void Configure(EntityTypeBuilder<Feed> builder)
 	{
 		builder

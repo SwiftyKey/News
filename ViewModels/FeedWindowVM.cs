@@ -6,11 +6,20 @@ using System.Windows;
 
 namespace News.ViewModels;
 
+/**
+	\brief Модель представления для работы с окном отображения публикации
+	\param feed Отображаемая публикация
+
+	Наследуется от BaseChanged
+*/
 public class FeedWindowVM(Feed feed) : BaseChanged
 {
+	/// Отображаемая публикация
 	public Feed CurrentFeed { get; set; } = feed;
 
+	/// Команда добавления публикации в избранное
 	private RelayCommand? favouriteCommand;
+	/// Свойство для работы с favouriteCommand
 	public RelayCommand? FavouriteCommand
 	{
 		get
@@ -24,7 +33,9 @@ public class FeedWindowVM(Feed feed) : BaseChanged
 		}
 	}
 
+	/// Команда добавления публикации в отложенное
 	private RelayCommand? readLaterCommand;
+	/// Свойство для работы с readLaterCommand
 	public RelayCommand? ReadLaterCommand
 	{
 		get
@@ -38,7 +49,9 @@ public class FeedWindowVM(Feed feed) : BaseChanged
 		}
 	}
 
+	/// Команда копирования ссылки на публикацию
 	private RelayCommand? copyLinkCommand;
+	/// Свойство для работы с copyLinkCommand
 	public RelayCommand? CopyLinkCommand
 	{
 		get
@@ -50,7 +63,9 @@ public class FeedWindowVM(Feed feed) : BaseChanged
 		}
 	}
 
+	/// Команда открытие ссылки в браузере по умолчанию
 	private RelayCommand? openLinkCommand;
+	/// Свойство для работы с openLinkCommand
 	public RelayCommand? OpenLinkCommand
 	{
 		get

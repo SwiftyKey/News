@@ -11,19 +11,38 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Xml;
 
+/**
+	\brief Пространство имен, в котором содержатся модели представления (ViewModel)
+	\param Содержит классы:
+		@ref ApplicationVM
+		@ref FeedWindowVM
+		@ref SettingsVM
+*/
 namespace News.ViewModels;
 
+/**
+	\brief Основной класс для взаимодействия графического интерфейса и моделей
+	
+	Наследуется от BaseChanged
+*/
 public class ApplicationVM : BaseChanged
 {
+	/// Контекст базы данных
 	public static Models.Repositories.AppContext DB { get; set; } = new();
+	/// Сервис работы с таблицей Feeds
 	public static FeedService FeedService { get; set; } = new (new FeedRepository(DB));
+	/// Сервис работы с таблицей Sources
 	public static SourceService SourceService { get; set; } = new (new SourceRepository(DB));
 
+	/// Коллекция источников
 	public static ObservableCollection<Source> Sources { get; set; } = [];
+	/// Коллекция публикаций
 	public ObservableCollection<Models.Entities.Feed> Feeds { get; set; } = [];
 
+	/// Наблюдатель, оповещающий о выходе новых публикаций
 	public static Observer Observer { get; set; } = new();
 
+	/// Конструктор класса ApplicationVM
 	public ApplicationVM()
 	{
 		DB.Feeds.Load();
@@ -33,7 +52,9 @@ public class ApplicationVM : BaseChanged
 		Sources = DB.Sources.Local.ToObservableCollection();
 	}
 
+	/// Команда добавления источника
 	private RelayCommand? addSourceCommand;
+	/// Свойство для работы с addSourceCommand
 	public RelayCommand AddSourceCommand
 	{
 		get
@@ -80,7 +101,9 @@ public class ApplicationVM : BaseChanged
 		}
 	}
 
+	/// Команда удаления источника
 	private RelayCommand? removeSourceCommand;
+	/// Свойство для работы с removeSourceCommand
 	public RelayCommand RemoveSourceCommand
 	{
 		get
@@ -94,7 +117,9 @@ public class ApplicationVM : BaseChanged
 		}
 	}
 
+	/// Команда показа выбранной публикации
 	private static RelayCommand? viewFeedCommand;
+	/// Свойство для работы с viewFeedCommand
 	public static RelayCommand? ViewFeedCommand
 	{
 		get

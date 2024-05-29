@@ -1,21 +1,19 @@
-﻿using News.Models.Entities;
-using News.ViewModels;
-using System.Windows.Media;
+﻿using News.ViewModels;
 
-namespace News.Views.Windows
+namespace News.Views.Windows;
+
+
+/// Разделенный класс окна добавления отображения публикации
+public partial class FeedWindow
 {
-	/// <summary>
-	/// Логика взаимодействия для FeedWindow.xaml
-	/// </summary>
-	public partial class FeedWindow
-	{
-		public FeedWindowVM FeedWindowVM { get; private set; }
+	/// ViewModel данного окна
+	public FeedWindowVM FeedWindowVM { get; private set; }
 
-		public FeedWindow(FeedWindowVM feedWindowVM)
-		{
-			InitializeComponent();
-			FeedWindowVM = feedWindowVM;
-			DataContext = FeedWindowVM;
-		}
+	/// Конструктор класса FeedWindow
+	public FeedWindow(FeedWindowVM feedWindowVM)
+	{
+		InitializeComponent();
+		FeedWindowVM = feedWindowVM;
+		DataContext = FeedWindowVM;
 	}
 }
