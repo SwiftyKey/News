@@ -55,7 +55,7 @@
                 <CollectionViewSource.Filter>
                     <me:Filter>
                         <me:PropertyFilter
-                            PropertyName="IsFavourite"
+                            PropertyName="IsReadLater"
                             Value="True"/>
                     </me:Filter>
                 </CollectionViewSource.Filter>

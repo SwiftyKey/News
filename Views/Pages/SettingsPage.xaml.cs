@@ -5,12 +5,15 @@ using System.Windows;
 
 namespace News.Views.Pages;
 
-/// <summary>
-/// Логика взаимодействия для SettingsPages.xaml
-/// </summary>
+/**
+	\brief Разделенный класс страницы отображения настроек приложения
+	
+	Наследуется от Page
+*/
 public partial class SettingsPage
 {
-    public SettingsPage()
+	/// Конструктор класса SettingsPage
+	public SettingsPage()
     {
 		InitializeComponent();
 		DataContext = new SettingsVM();
