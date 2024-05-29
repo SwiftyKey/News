@@ -19,7 +19,7 @@ public class FeedRepository : BaseRepository<Feed>
 	}
 
 	/**
-		\brief Мметод, получения публикации по ее ссылке
+		\brief Метод, получения публикации по ее ссылке
 		\param[in] url ссылка на публикацию
 		\return Полученная публикация
 	*/

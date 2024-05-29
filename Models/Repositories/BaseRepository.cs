@@ -36,7 +36,7 @@ public abstract class BaseRepository<TEntity>(AppContext context) : IBaseReposit
 	}
 
 	/**
-		\brief Метод, обнавляющий указанную сущность в базе данных
+		\brief Метод, обновляющий указанную сущность в базе данных
 		\param[in] entity Объект, который надо изменить
 	*/
 	public void Update(TEntity entity)
@@ -46,7 +46,7 @@ public abstract class BaseRepository<TEntity>(AppContext context) : IBaseReposit
 	}
 
 	/**
-		\brief Метод, обнавляющий указанные сущности в базе данных
+		\brief Метод, обновляющий указанные сущности в базе данных
 		\param[in] entities Объекты, которые надо изменить
 	*/
 	public void UpdateRange(IEnumerable<TEntity> entities)
@@ -55,7 +55,7 @@ public abstract class BaseRepository<TEntity>(AppContext context) : IBaseReposit
 	}
 
 	/**
-		\brief Метод, удаляющий указанную сущность в базе данных
+		\brief Метод, удаляющий указанную сущность из базы данных
 		\param[in] entity Удаляемый объект
 	*/
 	public void Delete(TEntity entity)
@@ -65,7 +65,7 @@ public abstract class BaseRepository<TEntity>(AppContext context) : IBaseReposit
 	}
 
 	/**
-		\brief Метод, удаляющий указанные сущности в базе данных
+		\brief Метод, удаляющий указанные сущности из базы данных
 		\param[in] entity Удаляемые объекты
 	*/
 	public void DeleteRange(IEnumerable<TEntity> entities)
