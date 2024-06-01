@@ -1,4 +1,5 @@
 ﻿using News.Models.Common;
+using System.Collections.ObjectModel;
 
 /**
 	\brief Пространство имен, в котором содержатся классы сущностей базы данных
@@ -18,39 +19,16 @@ public class Publication : BaseEntity
 {
 	/// Название публикации
 	public required string Title { get; set; }
-
 	/// Ссылка на публикаию в интернете
 	public required string Link { get; set; }
-
 	/// Дата выхода публикации
 	public DateTime? PublishingDate { get; set; }
 
-	/// Булево значение, показывающее, добавлена ли данная публикация в избранное
-	bool isFavourite = false;
-	/// Свойство для работы с isFavourite
-	public bool IsFavourite
-	{
-		get => isFavourite;
-		set
-		{
-			isFavourite = value;
-			OnPropertyChanged(nameof(isFavourite));
-		}
-	}
+	public ObservableCollection<User> UserFavourites { get; set; } = [];
+	public ObservableCollection<Favourite> Favourites { get; set; } = [];
 
-	/// Булево значение, показывающее, добавлена ли данная публикация в отложенное
-	bool isReadLater = false;
-	/// Свойство для работы с isReadLater
-	public bool IsReadLater
-	{
-		get => isReadLater;
-		set
-		{
-			isReadLater = value;
-			OnPropertyChanged(nameof(isReadLater));
-		}
-	}
-
+	public ObservableCollection<User> UserReadLater { get; set; } = [];
+	public ObservableCollection<ReadLater> ReadLater { get; set; } = [];
 	/// Источник данной публикации
 	public Source Source { get; set; } = null!;
 	/// Внешний ключ источника

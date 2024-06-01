@@ -20,6 +20,9 @@ public partial class PublicationsPage : Page
 	public PublicationsPage()
 	{
 		InitializeComponent();
+		LBFeeds.SelectedIndex = -1;
+		LBFavourites.SelectedIndex = -1;
+		LBReadLater.SelectedIndex = -1;
 	}
 
 	/**

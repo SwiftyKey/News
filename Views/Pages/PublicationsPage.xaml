@@ -24,8 +24,7 @@
             </CollectionViewSource>
             <CollectionViewSource
                 x:Key="FavouritesFeeds"
-                Source="{Binding FavouriteList}"
-                xmlns:me="clr-namespace:News.Views.MarkupExtensions"
+                Source="{Binding CurrentUser.FavouritesPublications}"
                 IsLiveFilteringRequested="True"
                 IsLiveSortingRequested="True">
                 <CollectionViewSource.SortDescriptions>
@@ -36,8 +35,7 @@
             </CollectionViewSource>
             <CollectionViewSource
                 x:Key="ReadLaterFeeds"
-                Source="{Binding ReadLaterList}"
-                xmlns:me="clr-namespace:News.Views.MarkupExtensions"
+                Source="{Binding CurrentUser.ReadLaterPublications}"
                 IsLiveFilteringRequested="True"
                 IsLiveSortingRequested="True">
                 <CollectionViewSource.SortDescriptions>
@@ -74,7 +72,8 @@
                                 x:Name="LBFeeds"
                                 ItemsSource="{Binding Source={StaticResource SortedAllFeeds}}"
                                 Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
-                                HorizontalContentAlignment="Center">
+                                HorizontalContentAlignment="Center"
+                                IsSynchronizedWithCurrentItem="False">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel
@@ -120,7 +119,8 @@
                                 x:Name="LBReadLater"
                                 ItemsSource="{Binding Source={StaticResource ReadLaterFeeds}}"
                                 Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
-                                HorizontalContentAlignment="Center">
+                                HorizontalContentAlignment="Center"
+                                IsSynchronizedWithCurrentItem="False">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel
@@ -166,7 +166,8 @@
                                 x:Name="LBFavourites"
                                 ItemsSource="{Binding Source={StaticResource FavouritesFeeds}}"
                                 Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
-                                HorizontalContentAlignment="Center">
+                                HorizontalContentAlignment="Center"
+                                IsSynchronizedWithCurrentItem="False">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel

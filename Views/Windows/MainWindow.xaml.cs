@@ -1,5 +1,4 @@
 ﻿using ModernWpf.Controls;
-using News.Settings;
 using News.ViewModels;
 using News.Views.Pages;
 using System.Windows;
@@ -22,11 +21,11 @@ public partial class MainWindow
 	private bool IsGoBack { get; set; } = false;
 
 	/// Конструктор класса MainWindow
-	public MainWindow()
+	public MainWindow(string login)
 	{
 		InitializeComponent();
 
-		DataContext = new ApplicationVM();
+		DataContext = new ApplicationVM(login);
 
 		History = [];
 		NavView.SelectedItem = NVItemAllNews;
@@ -98,7 +97,7 @@ public partial class MainWindow
 	*/
 	private void Window_Loaded(object sender, RoutedEventArgs e)
 	{
-		SettingsVM.AppSettings = SettingsSerializer.GetAppSettings();
+		ModernWpf.ThemeManager.Current.ApplicationTheme = ApplicationVM.CurrentUser.Theme;
 	}
 
 	/**
@@ -106,10 +105,7 @@ public partial class MainWindow
 		\param[in] sender Элемент (Window), у которого сгенерировалось событие
 		\param[in] e Аргументы данного события
 	*/
-	private void Window_Closed(object sender, EventArgs e)
-	{
-		SettingsSerializer.UpdateAppSettings(SettingsVM.AppSettings);
-	}
+	private void Window_Closed(object sender, EventArgs e) => ApplicationVM.DB.SaveChanges();
 
 	/**
 		\brief Скрытый метод, который прячет главное окно при нажатии кнопки свернуть

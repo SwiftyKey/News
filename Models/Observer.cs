@@ -30,7 +30,9 @@ public class Observer
 	*/
 	public async Task Update()
 	{
-		foreach (var source in ApplicationVM.Sources)
+		if (ApplicationVM.CurrentUser is null) return;
+
+		foreach (var source in ApplicationVM.CurrentUser.Sources)
 		{
 			var reader = await FeedReader.ReadAsync(source.Url);
 
@@ -50,7 +52,7 @@ public class Observer
 
 					var addedPublication = await PublicationService.AddAsync(newPublication);
 
-					if (SettingsVM.AppSettings.NotificationsOn)
+					if (ApplicationVM.CurrentUser.NotificationsOn)
 						await ViewNotification(addedPublication);
 				}
 			}

@@ -17,6 +17,10 @@ public class PublicationWindowVM(Publication Publication) : BaseChanged
 	/// Отображаемая публикация
 	public Publication CurrentPublication { get; set; } = Publication;
 
+	public bool IsFavourite{ get; set; } = ApplicationVM.CurrentUser.FavouritesPublications.Contains(Publication);
+
+	public bool IsReadLater { get; set; } = ApplicationVM.CurrentUser.ReadLaterPublications.Contains(Publication);
+
 	/// Команда добавления публикации в избранное
 	private RelayCommand? favouriteCommand;
 	/// Свойство для работы с favouriteCommand
@@ -28,14 +32,12 @@ public class PublicationWindowVM(Publication Publication) : BaseChanged
 			{
 				if (state is null) return;
 
-				CurrentPublication.IsFavourite = (bool)state;
-				
-				if (CurrentPublication.IsFavourite)
-					ApplicationVM.FavouriteList.Add(CurrentPublication);
+				if ((bool)state)
+					ApplicationVM.CurrentUser?.FavouritesPublications.Add(CurrentPublication);
 				else
-					ApplicationVM.FavouriteList.Remove(CurrentPublication);
+					ApplicationVM.CurrentUser?.FavouritesPublications.Remove(CurrentPublication);
 
-				_ = ApplicationVM.PublicationService.UpdateAsync(CurrentPublication);
+				ApplicationVM.DB.SaveChanges();
 			});
 		}
 	}
@@ -51,15 +53,12 @@ public class PublicationWindowVM(Publication Publication) : BaseChanged
 			{
 				if (state is null) return;
 
-				CurrentPublication.IsReadLater = (bool)state;
-
-
-				if (CurrentPublication.IsReadLater)
-					ApplicationVM.ReadLaterList.Add(CurrentPublication);
+				if ((bool)state)
+					ApplicationVM.CurrentUser?.ReadLaterPublications.Add(CurrentPublication);
 				else
-					ApplicationVM.ReadLaterList.Remove(CurrentPublication);
+					ApplicationVM.CurrentUser?.ReadLaterPublications.Remove(CurrentPublication);
 
-				_ = ApplicationVM.PublicationService.UpdateAsync(CurrentPublication);
+				ApplicationVM.DB.SaveChanges();
 			});
 		}
 	}

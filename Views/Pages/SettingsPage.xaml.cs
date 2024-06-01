@@ -1,9 +1,4 @@
-﻿using ModernWpf;
-using News.ViewModels;
-using System.Diagnostics;
-using System.Windows;
-
-namespace News.Views.Pages;
+﻿namespace News.Views.Pages;
 
 /**
 	\brief Разделенный класс страницы отображения настроек приложения
@@ -16,11 +11,5 @@ public partial class SettingsPage
 	public SettingsPage()
     {
 		InitializeComponent();
-		DataContext = new SettingsVM();
-	}
-
-	private void Window_ActualThemeChanged(object sender, RoutedEventArgs e)
-	{
-		Debug.WriteLine(ThemeManager.GetActualTheme(this));
 	}
 }

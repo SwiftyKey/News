@@ -43,7 +43,7 @@
                     PreviewMouseWheel="SVScroll_PreviewMouseWheel">
                     <ListBox
                         x:Name="LBSources"
-                        ItemsSource="{Binding Sources}"
+                        ItemsSource="{Binding CurrentUser.Sources}"
                         Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
                         HorizontalContentAlignment="Center">
                         <ListBox.ItemTemplate>

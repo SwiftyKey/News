@@ -34,10 +34,6 @@ public class PublicationConfig : IEntityTypeConfiguration<Publication>
 		builder
 			.Property(f => f.PublishingDate);
 		builder
-			.Property(f => f.IsFavourite);
-		builder
-			.Property(f => f.IsReadLater);
-		builder
 			.HasOne(f => f.Source)
 			.WithMany(s => s.Publications)
 			.HasForeignKey(f => f.SourceId)
