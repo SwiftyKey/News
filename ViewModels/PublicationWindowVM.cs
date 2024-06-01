@@ -6,20 +6,13 @@ using System.Windows;
 
 namespace News.ViewModels;
 
-/**
-	\brief Модель представления для работы с окном отображения публикации
-	\param Publication Отображаемая публикация
-
-	Наследуется от BaseChanged
-*/
 public class PublicationWindowVM(Publication Publication) : BaseChanged
 {
-	/// Отображаемая публикация
 	public Publication CurrentPublication { get; set; } = Publication;
+	public bool IsFavourite{ get; set; } = ApplicationVM.CurrentUser.FavouritesPublications.Contains(Publication);
+	public bool IsReadLater { get; set; } = ApplicationVM.CurrentUser.ReadLaterPublications.Contains(Publication);
 
-	/// Команда добавления публикации в избранное
 	private RelayCommand? favouriteCommand;
-	/// Свойство для работы с favouriteCommand
 	public RelayCommand? FavouriteCommand
 	{
 		get
@@ -28,21 +21,17 @@ public class PublicationWindowVM(Publication Publication) : BaseChanged
 			{
 				if (state is null) return;
 
-				CurrentPublication.IsFavourite = (bool)state;
-				
-				if (CurrentPublication.IsFavourite)
-					ApplicationVM.FavouriteList.Add(CurrentPublication);
+				if ((bool)state)
+					ApplicationVM.CurrentUser?.FavouritesPublications.Add(CurrentPublication);
 				else
-					ApplicationVM.FavouriteList.Remove(CurrentPublication);
+					ApplicationVM.CurrentUser?.FavouritesPublications.Remove(CurrentPublication);
 
-				_ = ApplicationVM.PublicationService.UpdateAsync(CurrentPublication);
+				ApplicationVM.DB.SaveChanges();
 			});
 		}
 	}
 
-	/// Команда добавления публикации в отложенное
 	private RelayCommand? readLaterCommand;
-	/// Свойство для работы с readLaterCommand
 	public RelayCommand? ReadLaterCommand
 	{
 		get
@@ -51,22 +40,17 @@ public class PublicationWindowVM(Publication Publication) : BaseChanged
 			{
 				if (state is null) return;
 
-				CurrentPublication.IsReadLater = (bool)state;
-
-
-				if (CurrentPublication.IsReadLater)
-					ApplicationVM.ReadLaterList.Add(CurrentPublication);
+				if ((bool)state)
+					ApplicationVM.CurrentUser?.ReadLaterPublications.Add(CurrentPublication);
 				else
-					ApplicationVM.ReadLaterList.Remove(CurrentPublication);
+					ApplicationVM.CurrentUser?.ReadLaterPublications.Remove(CurrentPublication);
 
-				_ = ApplicationVM.PublicationService.UpdateAsync(CurrentPublication);
+				ApplicationVM.DB.SaveChanges();
 			});
 		}
 	}
 
-	/// Команда копирования ссылки на публикацию
 	private RelayCommand? copyLinkCommand;
-	/// Свойство для работы с copyLinkCommand
 	public RelayCommand? CopyLinkCommand
 	{
 		get
@@ -78,9 +62,7 @@ public class PublicationWindowVM(Publication Publication) : BaseChanged
 		}
 	}
 
-	/// Команда открытие ссылки в браузере по умолчанию
 	private RelayCommand? openLinkCommand;
-	/// Свойство для работы с openLinkCommand
 	public RelayCommand? OpenLinkCommand
 	{
 		get
