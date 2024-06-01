@@ -33,5 +33,5 @@ public class Source : BaseEntity
 	public string? ImageUrl { get; set; }
 
 	/// Все публикации данного источника
-	public List<Feed> Feeds { get; set; } = [];
+	public List<Publication> Publications { get; set; } = [];
 }

@@ -33,7 +33,7 @@ public class SourceConfig : IEntityTypeConfiguration<Source>
 		builder
 			.Property(s => s.ImageUrl);
 		builder
-			.HasMany(s => s.Feeds)
+			.HasMany(s => s.Publications)
 			.WithOne(f => f.Source)
 			.HasForeignKey(f => f.SourceId)
 			.OnDelete(DeleteBehavior.Cascade);

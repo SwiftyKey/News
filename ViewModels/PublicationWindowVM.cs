@@ -8,14 +8,14 @@ namespace News.ViewModels;
 
 /**
 	\brief Модель представления для работы с окном отображения публикации
-	\param feed Отображаемая публикация
+	\param Publication Отображаемая публикация
 
 	Наследуется от BaseChanged
 */
-public class FeedWindowVM(Feed feed) : BaseChanged
+public class PublicationWindowVM(Publication Publication) : BaseChanged
 {
 	/// Отображаемая публикация
-	public Feed CurrentFeed { get; set; } = feed;
+	public Publication CurrentPublication { get; set; } = Publication;
 
 	/// Команда добавления публикации в избранное
 	private RelayCommand? favouriteCommand;
@@ -27,8 +27,8 @@ public class FeedWindowVM(Feed feed) : BaseChanged
 			return favouriteCommand ??= new RelayCommand((state) =>
 			{
 				if (state is null) return;
-				CurrentFeed.IsFavourite = (bool)state;
-				_ = ApplicationVM.FeedService.UpdateAsync(CurrentFeed);
+				CurrentPublication.IsFavourite = (bool)state;
+				_ = ApplicationVM.PublicationService.UpdateAsync(CurrentPublication);
 			});
 		}
 	}
@@ -43,8 +43,8 @@ public class FeedWindowVM(Feed feed) : BaseChanged
 			return readLaterCommand ??= new RelayCommand((state) =>
 			{
 				if (state is null) return;
-				CurrentFeed.IsReadLater = (bool)state;
-				_ = ApplicationVM.FeedService.UpdateAsync(CurrentFeed);
+				CurrentPublication.IsReadLater = (bool)state;
+				_ = ApplicationVM.PublicationService.UpdateAsync(CurrentPublication);
 			});
 		}
 	}
@@ -58,7 +58,7 @@ public class FeedWindowVM(Feed feed) : BaseChanged
 		{
 			return copyLinkCommand ??= new RelayCommand(_ =>
 			{
-				Clipboard.SetText(CurrentFeed.Link);
+				Clipboard.SetText(CurrentPublication.Link);
 			});
 		}
 	}
@@ -72,7 +72,7 @@ public class FeedWindowVM(Feed feed) : BaseChanged
 		{
 			return openLinkCommand ??= new RelayCommand(_ =>
 			{
-				Process.Start(new ProcessStartInfo(CurrentFeed.Link) { UseShellExecute = true });
+				Process.Start(new ProcessStartInfo(CurrentPublication.Link) { UseShellExecute = true });
 			});
 		}
 	}

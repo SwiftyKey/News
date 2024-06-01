@@ -5,23 +5,23 @@ using News.Models.Entities;
 /**
 	\brief Пространство имен, в котором содержатся классы конфигурации для создания таблиц в базе данных
 	\param Содержит классы:
-		@ref FeedConfig
+		@ref PublicationConfig
 		@ref SourceConfig
 */
 namespace News.Models.Repositories.Configs;
 
 /**
-	\brief Класс, предназначенный для конфигурации создания таблицы Feeds в базе данных
+	\brief Класс, предназначенный для конфигурации создания таблицы Publications в базе данных
 	
 	Наследуется от IEntityTypeConfiguration
 */
-public class FeedConfig : IEntityTypeConfiguration<Feed>
+public class PublicationConfig : IEntityTypeConfiguration<Publication>
 {
 	/**
-		\brief Метод, конфигурирующий создание таблицы Feeds
-		\param[in] builder Билдер сущности Feed
+		\brief Метод, конфигурирующий создание таблицы Publications
+		\param[in] builder Билдер сущности Publication
 	*/
-	public void Configure(EntityTypeBuilder<Feed> builder)
+	public void Configure(EntityTypeBuilder<Publication> builder)
 	{
 		builder
 			.HasKey(f => f.Id);
@@ -39,7 +39,7 @@ public class FeedConfig : IEntityTypeConfiguration<Feed>
 			.Property(f => f.IsReadLater);
 		builder
 			.HasOne(f => f.Source)
-			.WithMany(s => s.Feeds)
+			.WithMany(s => s.Publications)
 			.HasForeignKey(f => f.SourceId)
 			.OnDelete(DeleteBehavior.Cascade);
 	}

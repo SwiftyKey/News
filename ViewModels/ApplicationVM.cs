@@ -15,7 +15,7 @@ using System.Xml;
 	\brief Пространство имен, в котором содержатся модели представления (ViewModel)
 	\param Содержит классы:
 		@ref ApplicationVM
-		@ref FeedWindowVM
+		@ref PublicationWindowVM
 		@ref SettingsVM
 */
 namespace News.ViewModels;
@@ -29,15 +29,15 @@ public class ApplicationVM : BaseChanged
 {
 	/// Контекст базы данных
 	public static Models.Repositories.AppContext DB { get; set; } = new();
-	/// Сервис работы с таблицей Feeds
-	public static FeedService FeedService { get; set; } = new (new FeedRepository(DB));
+	/// Сервис работы с таблицей Publications
+	public static PublicationService PublicationService { get; set; } = new (new PublicationRepository(DB));
 	/// Сервис работы с таблицей Sources
 	public static SourceService SourceService { get; set; } = new (new SourceRepository(DB));
 
 	/// Коллекция источников
 	public static ObservableCollection<Source> Sources { get; set; } = [];
 	/// Коллекция публикаций
-	public ObservableCollection<Models.Entities.Feed> Feeds { get; set; } = [];
+	public ObservableCollection<Publication> Publications { get; set; } = [];
 
 	/// Наблюдатель, оповещающий о выходе новых публикаций
 	public static Observer Observer { get; set; } = new();
@@ -45,10 +45,10 @@ public class ApplicationVM : BaseChanged
 	/// Конструктор класса ApplicationVM
 	public ApplicationVM()
 	{
-		DB.Feeds.Load();
+		DB.Publications.Load();
 		DB.Sources.Load();
 
-		Feeds = DB.Feeds.Local.ToObservableCollection();
+		Publications = DB.Publications.Local.ToObservableCollection();
 		Sources = DB.Sources.Local.ToObservableCollection();
 	}
 
@@ -85,7 +85,7 @@ public class ApplicationVM : BaseChanged
 
 						_ = SourceService.AddAsync(source);
 
-						_ = FeedService.AddRangeAsyncBySource(source);
+						_ = PublicationService.AddRangeAsyncBySource(source);
 					}
 					catch (XmlException ex)
 					{
@@ -118,21 +118,21 @@ public class ApplicationVM : BaseChanged
 	}
 
 	/// Команда показа выбранной публикации
-	private static RelayCommand? viewFeedCommand;
-	/// Свойство для работы с viewFeedCommand
-	public static RelayCommand? ViewFeedCommand
+	private static RelayCommand? viewPublicationCommand;
+	/// Свойство для работы с viewPublicationCommand
+	public static RelayCommand? ViewPublicationCommand
 	{
 		get
 		{
-			return viewFeedCommand ??= new RelayCommand((selectedItem) => 
+			return viewPublicationCommand ??= new RelayCommand((selectedItem) => 
 			{
 				if (selectedItem is null) return;
 
-				Models.Entities.Feed? feed = selectedItem as Models.Entities.Feed;
+				Publication? publication = selectedItem as Publication;
 				Application.Current.Dispatcher.Invoke(() =>
 				{
-					FeedWindow feedWindow = new(new FeedWindowVM(feed));
-					feedWindow.Show();
+					PublicationWindow PublicationWindow = new(new PublicationWindowVM(publication));
+					PublicationWindow.Show();
 				});
 			});
 		}

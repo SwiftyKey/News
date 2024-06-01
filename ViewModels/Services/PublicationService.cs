@@ -5,7 +5,7 @@ using News.Models.Repositories;
 /**
 	\brief Пространство имен, в котором содержатся классы для работы с сервисами
 	\param Содержит классы:
-		@ref FeedService
+		@ref PublicationService
 		@ref SourceService
 */
 namespace News.ViewModels.Services;
@@ -13,30 +13,30 @@ namespace News.ViewModels.Services;
 /**
 	\brief Класс, предназначенный для взаимодействия программы с репозиторием публикаций
 	
-	Работа с таблицей Feeds происходит через данный сервис
+	Работа с таблицей Publications происходит через данный сервис
 */
-public class FeedService(FeedRepository feedRepository)
+public class PublicationService(PublicationRepository publicationRepository)
 {
 	/**
 		\brief Асинхронный метод, добавляющий публикацию в базу данных
-		\param[in] feed Добавляемая публикация
+		\param[in] publication Добавляемая публикация
 		\return Добавленная публикация
 	*/
-	public async Task<Models.Entities.Feed> AddAsync(Models.Entities.Feed feed)
+	public async Task<Publication> AddAsync(Publication publication)
 	{
-		var addedFeed = await feedRepository.AddAsync(feed);
-		await feedRepository.SaveChangesAsync();
-		return addedFeed;
+		var addedPublication = await publicationRepository.AddAsync(publication);
+		await publicationRepository.SaveChangesAsync();
+		return addedPublication;
 	}
 
 	/**
 		\brief Асинхронный метод, добавляющий несколько публикаций в базу данных
-		\param[in] feeds Коллекция добавляемых объектов
+		\param[in] publications Коллекция добавляемых объектов
 	*/
-	public async Task AddRangeAsync(IEnumerable<Models.Entities.Feed> feeds)
+	public async Task AddRangeAsync(IEnumerable<Publication> publications)
 	{
-		await feedRepository.AddRangeAsync(feeds);
-		await feedRepository.SaveChangesAsync();
+		await publicationRepository.AddRangeAsync(publications);
+		await publicationRepository.SaveChangesAsync();
 	}
 
 	/**
@@ -45,12 +45,12 @@ public class FeedService(FeedRepository feedRepository)
 	*/
 	public async Task AddRangeAsyncBySource(Source source)
 	{
-		await feedRepository.AddRangeAsync(
+		await publicationRepository.AddRangeAsync(
 			FeedReader
 			.ReadAsync(source.Url)
 			.Result
 			.Items
-			.Select(item => new Models.Entities.Feed
+			.Select(item => new Publication
 			{
 				Title = item.Title,
 				Link = item.Link,
@@ -58,57 +58,48 @@ public class FeedService(FeedRepository feedRepository)
 				Source = source
 			})
 		);
-		await feedRepository.SaveChangesAsync();
+		await publicationRepository.SaveChangesAsync();
 	}
 
 	/**
 		\brief Асинхронный метод, удаляющий указанную публикацию из базы данных
-		\param[in] feed Удаляемая публикация
+		\param[in] publication Удаляемая публикация
 	*/
-	public async Task DeleteAsync(Models.Entities.Feed feed)
+	public async Task DeleteAsync(Publication publication)
 	{
-		feedRepository.Delete(feed);
-		await feedRepository.SaveChangesAsync();
+		publicationRepository.Delete(publication);
+		await publicationRepository.SaveChangesAsync();
 	}
 
 	/**
-		\brief Метод, возвращающий все публикации из таблицы Feeds
+		\brief Метод, возвращающий все публикации из таблицы Publications
 		\return Коллекция публикаций
 	*/
-	public IEnumerable<Models.Entities.Feed> GetAll()
-	{
-		return feedRepository.GetAll();
-	}
+	public IEnumerable<Publication> GetAll() => publicationRepository.GetAll();
 
 	/**
 		\brief Метод, возвращающий публикацию по ее первичному ключу
 		\param[in] id Первичный ключ требуемой публикации
 		\return Полученная публикация
 	*/
-	public Models.Entities.Feed GetById(int id)
-	{
-		return feedRepository.GetById(id);
-	}
+	public Publication GetById(int id) => publicationRepository.GetById(id);
 
 	/**
 		\brief Метод, получения публикации по ее ссылке
 		\param[in] url ссылка на публикацию
 		\return Полученная публикация
 	*/
-	public Models.Entities.Feed? GetByUrl(string url)
-	{
-		return feedRepository.GetByUrl(url);
-	}
+	public Publication? GetByUrl(string url) => publicationRepository.GetByUrl(url);
 
 	/**
 		\brief Асинхронный метод, обновляющий указанную публикацию в базе данных
-		\param[in] feed Публикация, которую надо изменить
+		\param[in] publication Публикация, которую надо изменить
 	*/
-	public async Task UpdateAsync(Models.Entities.Feed feed)
+	public async Task UpdateAsync(Publication publication)
 	{
-		var entity = feedRepository.GetById(feed.Id);
+		var entity = publicationRepository.GetById(publication.Id);
 
-		feedRepository.Update(entity);
-		await feedRepository.SaveChangesAsync();
+		publicationRepository.Update(entity);
+		await publicationRepository.SaveChangesAsync();
 	}
 }

@@ -3,7 +3,7 @@
 /**
 	\brief Пространство имен, в котором содержатся страницы главного окна приложения
 	\param Содержит классы:
-		@ref FeedsPage
+		@ref PublicationsPage
 		@ref SettingsPage
 		@ref SourcesPage
 */
@@ -14,10 +14,10 @@ namespace News.Views.Pages;
 	
 	Наследуется от Page
 */
-public partial class FeedsPage : Page
+public partial class PublicationsPage : Page
 {
-	/// Конструктор класса FeedsPage
-	public FeedsPage()
+	/// Конструктор класса PublicationsPage
+	public PublicationsPage()
 	{
 		InitializeComponent();
 	}

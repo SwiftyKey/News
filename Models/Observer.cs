@@ -1,5 +1,6 @@
 ﻿using CodeHollow.FeedReader;
 using Microsoft.Toolkit.Uwp.Notifications;
+using News.Models.Entities;
 using News.Models.Repositories;
 using News.ViewModels;
 using News.ViewModels.Services;
@@ -21,8 +22,8 @@ public class Observer
 	/// Частота обновления публикаций
 	public TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 10);
 
-	/// Сервис для таблицы Feeds
-	public FeedService FeedService { get; set; } = new(new FeedRepository(ApplicationVM.DB));
+	/// Сервис для таблицы Publications
+	public PublicationService PublicationService { get; set; } = new(new PublicationRepository(ApplicationVM.DB));
 
 	/**
 		\brief Асинхронный метод, проверяющий последние вышедшие публикации источников
@@ -35,11 +36,11 @@ public class Observer
 
 			foreach (var item in reader.Items)
 			{
-				var result = FeedService.GetByUrl(item.Link);
+				var result = PublicationService.GetByUrl(item.Link);
 
 				if (result is null)
 				{
-					var newFeed = new Entities.Feed()
+					var newPublication = new Publication()
 					{
 						Title = item.Title,
 						Link = item.Link,
@@ -47,10 +48,10 @@ public class Observer
 						Source = source
 					};
 
-					var addedFeed = await FeedService.AddAsync(newFeed);
+					var addedPublication = await PublicationService.AddAsync(newPublication);
 
 					if (SettingsVM.AppSettings.NotificationsOn)
-						await ViewNotification(addedFeed);
+						await ViewNotification(addedPublication);
 				}
 			}
 		}
@@ -58,15 +59,15 @@ public class Observer
 
 	/**
 		\brief Асинхронный метод, для уведомления пользователя о вышедшей публикации источника
-		\param[in] feed Вышедшая публикация
+		\param[in] publication Вышедшая публикация
 	*/
-	public static async Task ViewNotification(Entities.Feed feed)
+	public static async Task ViewNotification(Publication publication)
 	{
 		var builder = new ToastContentBuilder()
-			.AddArgument("Action", "ViewFeed")
-			.AddArgument("FeedId", feed.Id)
-			.AddText(feed.Source.Title)
-			.AddText(feed.Title);
+			.AddArgument("Action", "ViewPublication")
+			.AddArgument("PublicationId", publication.Id)
+			.AddText(publication.Source.Title)
+			.AddText(publication.Title);
 		builder.Show();
 	}
 }

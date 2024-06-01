@@ -21,19 +21,13 @@ public abstract class BaseRepository<TEntity>(AppContext context) : IBaseReposit
 		\param[in] entity Добавляемый объект
 		\return Добавленный объект типа BaseEntity
 	*/
-	public async Task<TEntity> AddAsync(TEntity entity)
-	{
-		return (await set.AddAsync(entity)).Entity;
-	}
+	public async Task<TEntity> AddAsync(TEntity entity) => (await set.AddAsync(entity)).Entity;
 
 	/**
 		\brief Асинхронный метод, добавляющий несколько сущностей в базу данных
 		\param[in] entities Добавляемые объекты
 	*/
-	public async Task AddRangeAsync(IEnumerable<TEntity> entities)
-	{
-		await set.AddRangeAsync(entities);
-	}
+	public async Task AddRangeAsync(IEnumerable<TEntity> entities) => await set.AddRangeAsync(entities);
 
 	/**
 		\brief Метод, обновляющий указанную сущность в базе данных
@@ -49,10 +43,7 @@ public abstract class BaseRepository<TEntity>(AppContext context) : IBaseReposit
 		\brief Метод, обновляющий указанные сущности в базе данных
 		\param[in] entities Объекты, которые надо изменить
 	*/
-	public void UpdateRange(IEnumerable<TEntity> entities)
-	{
-		set.UpdateRange(entities);
-	}
+	public void UpdateRange(IEnumerable<TEntity> entities) => set.UpdateRange(entities);
 
 	/**
 		\brief Метод, удаляющий указанную сущность из базы данных
@@ -68,32 +59,20 @@ public abstract class BaseRepository<TEntity>(AppContext context) : IBaseReposit
 		\brief Метод, удаляющий указанные сущности из базы данных
 		\param[in] entity Удаляемые объекты
 	*/
-	public void DeleteRange(IEnumerable<TEntity> entities)
-	{
-		set.RemoveRange(entities);
-	}
+	public void DeleteRange(IEnumerable<TEntity> entities) => set.RemoveRange(entities);
 
-	public async Task SaveChangesAsync()
-	{
-		await context.SaveChangesAsync();
-	}
+	public async Task SaveChangesAsync() => await context.SaveChangesAsync();
 
 	/**
 		\brief Метод, возвращающий все объекты из таблицы базы данных
 		\return Итерируемый объект, содержащий объекты типа BaseEntity
 	*/
-	public IEnumerable<TEntity> GetAll()
-	{
-		return set;
-	}
+	public IEnumerable<TEntity> GetAll() => set;
 
 	/**
 		\brief Метод, возвращающий объект из таблицы по его ключу
 		\param[in] id Первичный ключ требуемого объекта
 		\return Объект типа BaseEntity
 	*/
-	public TEntity GetById(int id)
-	{
-		return set.First(el => el.Id == id);
-	}
+	public TEntity GetById(int id) => set.First(el => el.Id == id);
 }

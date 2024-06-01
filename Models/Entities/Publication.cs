@@ -3,7 +3,7 @@
 /**
 	\brief Пространство имен, в котором содержатся классы сущностей базы данных
 	\param Содержит классы сущностей:
-		@ref Feed
+		@ref Publication
 		@ref Source
 */
 namespace News.Models.Entities;
@@ -14,7 +14,7 @@ namespace News.Models.Entities;
 	Является сущностью в базе данных.
 	Наследуется от BaseEntity
 */
-public class Feed : BaseEntity
+public class Publication : BaseEntity
 {
 	/// Название публикации
 	public required string Title { get; set; }

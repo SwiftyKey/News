@@ -1,4 +1,4 @@
-﻿<Page x:Class="News.Views.Pages.FeedsPage"
+﻿<Page x:Class="News.Views.Pages.PublicationsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,7 +14,7 @@
         <ResourceDictionary>
             <CollectionViewSource
                 x:Key="SortedAllFeeds"
-                Source="{Binding Feeds}"
+                Source="{Binding Publications}"
                 IsLiveSortingRequested="True">
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription
@@ -24,7 +24,7 @@
             </CollectionViewSource>
             <CollectionViewSource
                 x:Key="FavouritesFeeds"
-                Source="{Binding Feeds}"
+                Source="{Binding Publications}"
                 xmlns:me="clr-namespace:News.Views.MarkupExtensions"
                 IsLiveFilteringRequested="True"
                 IsLiveSortingRequested="True">
@@ -43,7 +43,7 @@
             </CollectionViewSource>
             <CollectionViewSource
                 x:Key="ReadLaterFeeds"
-                Source="{Binding Feeds}"
+                Source="{Binding Publications}"
                 xmlns:me="clr-namespace:News.Views.MarkupExtensions"
                 IsLiveFilteringRequested="True"
                 IsLiveSortingRequested="True">
@@ -109,7 +109,7 @@
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <i:InvokeCommandAction
-                                            Command="{Binding ViewFeedCommand}"
+                                            Command="{Binding ViewPublicationCommand}"
                                             CommandParameter="{Binding ElementName=LBFeeds, Path=SelectedItem}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
@@ -155,7 +155,7 @@
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <i:InvokeCommandAction
-                                            Command="{Binding ViewFeedCommand}"
+                                            Command="{Binding ViewPublicationCommand}"
                                             CommandParameter="{Binding ElementName=LBReadLater, Path=SelectedItem}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
@@ -201,7 +201,7 @@
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <i:InvokeCommandAction
-                                            Command="{Binding ViewFeedCommand}"
+                                            Command="{Binding ViewPublicationCommand}"
                                             CommandParameter="{Binding ElementName=LBFavourites, Path=SelectedItem}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>

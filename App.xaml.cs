@@ -34,14 +34,14 @@ public partial class App : Application
 		{
 			var args = ToastArguments.Parse(toastArgs.Argument);
 
-			if (args.Contains("FeedId"))
+			if (args.Contains("PublicationId"))
 			{
-				var feedId = int.Parse(args["FeedId"]);
-				var feed = ApplicationVM.FeedService.GetById(feedId);
+				var publicationId = int.Parse(args["PublicationId"]);
+				var publication = ApplicationVM.PublicationService.GetById(publicationId);
 
-				if (args.Contains("Action") && args["Action"] == "ViewFeed")
-					if (ApplicationVM.ViewFeedCommand?.CanExecute(feed) == true)
-						ApplicationVM.ViewFeedCommand.Execute(feed);
+				if (args.Contains("Action") && args["Action"] == "ViewPublication")
+					if (ApplicationVM.ViewPublicationCommand?.CanExecute(publication) == true)
+						ApplicationVM.ViewPublicationCommand.Execute(publication);
 			}
 		};
 	}

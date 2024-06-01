@@ -42,7 +42,7 @@
                     Icon="AllApps"
                     Content="Все новости"
                     x:Name="NVItemAllNews"
-                    Tag="FeedsPage"
+                    Tag="PublicationsPage"
                     Width="318"/>
 
                 <ui:NavigationViewItem

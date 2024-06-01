@@ -44,20 +44,14 @@ public class SourceService(SourceRepository sourceRepository)
 		\brief Метод, возвращающий все источники из таблицы Sources
 		\return Коллекция источников
 	*/
-	public IEnumerable<Source> GetAll()
-	{
-		return sourceRepository.GetAll();
-	}
+	public IEnumerable<Source> GetAll() => sourceRepository.GetAll();
 
 	/**
 		\brief Метод, возвращающий источник по его первичному ключу
 		\param[in] id Первичный ключ требуемого источника
 		\return Полученный источник
 	*/
-	public Source GetById(int id)
-	{
-		return sourceRepository.GetById(id);
-	}
+	public Source GetById(int id) => sourceRepository.GetById(id);
 
 	/**
 		\brief Асинхронный метод, обновляющий указанный источник в базе данных

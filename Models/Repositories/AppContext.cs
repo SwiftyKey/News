@@ -7,7 +7,7 @@ using News.Models.Repositories.Configs;
 	\param Содержит классы:
 		@ref AppContext
 		@ref BaseRepository
-		@ref FeedRepository
+		@ref PublicationRepository
 		@ref SourceRepository
 */
 namespace News.Models.Repositories;
@@ -22,12 +22,12 @@ public class AppContext : DbContext
 	/// Таблица источников
 	public DbSet<Source> Sources { get; set; }
 	/// Таблица публикаций
-	public DbSet<Feed> Feeds { get; set; }
+	public DbSet<Publication> Publications { get; set; }
 
 	/// Конструктор класса AppContext
 	public AppContext()
 	{
-		//Database.EnsureDeleted();
+		Database.EnsureDeleted();
 		Database.EnsureCreated();
 	}
 
@@ -46,7 +46,7 @@ public class AppContext : DbContext
 	*/
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.ApplyConfiguration(new FeedConfig());
+		modelBuilder.ApplyConfiguration(new PublicationConfig());
 		modelBuilder.ApplyConfiguration(new SourceConfig());
 	}
 }
