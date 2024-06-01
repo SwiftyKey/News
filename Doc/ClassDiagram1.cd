@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="News.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAECAAAAAAAAAAAAAAAAgBAAAAAADCABACAAAAAAA=</HashCode>
+      <FileName>Views\Windows\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.App" Collapsed="true">
+    <Position X="26.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Properties.Resources" Collapsed="true">
+    <Position X="30.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Common.BaseChanged">
+    <Position X="10.75" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Common\BaseChanged.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="News.Models.Common.BaseEntity">
+    <Position X="12" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Common\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Entities.Favourite" Collapsed="true">
+    <Position X="32" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAgAAEAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Models\Entities\Favourite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Entities.Publication">
+    <Position X="11.25" Y="4.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAQAgAAAEIAAAAAAABCAAAAAAAAAAAAQBAAAAA=</HashCode>
+      <FileName>Models\Entities\Publication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Entities.ReadLater" Collapsed="true">
+    <Position X="26.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAgAAEAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Models\Entities\ReadLater.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Entities.Source">
+    <Position X="16" Y="4.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAQCAAAAAgAEAAAAAAAAAAAAAIAAAACAAAAEAAAAA=</HashCode>
+      <FileName>Models\Entities\Source.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Entities.User">
+    <Position X="5.75" Y="4.75" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAEQABAEAAIQBQAAAAAAAAAQAAAAAAAQABAAAAA=</HashCode>
+      <FileName>Models\Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Repositories.Configs.PublicationConfig" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Repositories\Configs\PublicationConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.Models.Repositories.Configs.SourceConfig" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Repositories\Configs\SourceConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.Models.Repositories.Configs.UserConfig" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Repositories\Configs\UserConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.Models.Repositories.AppContext" Collapsed="true">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAQAQAAAAIAAAAAAAAAEAAQAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Models\Repositories\AppContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Repositories.BaseRepository&lt;TEntity&gt;">
+    <Position X="3.75" Y="9.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAACAAAAEAAAAQAAAEAAAEAAAAgAgAAAAIAAIA=</HashCode>
+      <FileName>Models\Repositories\BaseRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="News.Models.Repositories.PublicationRepository">
+    <Position X="0.5" Y="13.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Repositories\PublicationRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Repositories.SourceRepository">
+    <Position X="3.25" Y="13.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Repositories\SourceRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Repositories.UserRepository">
+    <Position X="7" Y="13.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Observer" Collapsed="true">
+    <Position X="26.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAACAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Observer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Models.Hashers.SHA256Hasher" Collapsed="true">
+    <Position X="25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SHA256Hasher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Utilities.RelayCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAEAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.ViewModels.Services.PublicationService" Collapsed="true">
+    <Position X="30.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAACAEAAAAAAAgAQgAAAAAAAIA=</HashCode>
+      <FileName>ViewModels\Services\PublicationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.ViewModels.Services.SourceService" Collapsed="true">
+    <Position X="28.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAEAAAAAAAgAAgAAAAAAAIA=</HashCode>
+      <FileName>ViewModels\Services\SourceService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.ViewModels.Services.UserService">
+    <Position X="25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQCAAAEAAAAAAAgAAgAAAAAAAIA=</HashCode>
+      <FileName>ViewModels\Services\UserService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.ViewModels.ApplicationVM">
+    <Position X="1.25" Y="2.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>QAQAIAAEAIAACgBAAAIAgAQAAAAAAAAgCAAAAEAACBA=</HashCode>
+      <FileName>ViewModels\ApplicationVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.ViewModels.PublicationWindowVM">
+    <Position X="20.75" Y="2.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAECAAAgAgAAAAQgAAAAIAAAgAAAEQA=</HashCode>
+      <FileName>ViewModels\PublicationWindowVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="News.Views.Pages.PublicationsPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAIAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Views\Pages\PublicationsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.Views.Pages.SettingsPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Pages\SettingsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.Views.Pages.SourcesPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Pages\SourcesPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.Views.Windows.AddSourcesWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Windows\AddSourcesWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.Views.Windows.AuthWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Windows\AuthWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="News.Views.Windows.PublicationWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Windows\PublicationWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="News.Models.Common.IBaseRepository&lt;TEntity&gt;">
+    <Position X="13.25" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Common\IBaseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="News.Models.Common.IReadRepository&lt;TEntity&gt;">
+    <Position X="17" Y="9.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Common\IReadRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="News.Models.Common.IWriteRepository&lt;TEntity&gt;">
+    <Position X="12.25" Y="8.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAACAAAAEAAAAAAAAEAAAEAAAAgAAAAAAIAAAA=</HashCode>
+      <FileName>Models\Common\IWriteRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
