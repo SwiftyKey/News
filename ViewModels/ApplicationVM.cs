@@ -9,35 +9,18 @@ using News.Utilities;
 using News.ViewModels.Services;
 using News.Views.Windows;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Windows;
 using System.Xml;
 
-/**
-	\brief Пространство имен, в котором содержатся модели представления (ViewModel)
-	\param Содержит классы:
-		@ref ApplicationVM
-		@ref PublicationWindowVM
-		@ref SettingsVM
-*/
 namespace News.ViewModels;
 
-/**
-	\brief Основной класс для взаимодействия графического интерфейса и моделей
-	
-	Наследуется от BaseChanged
-*/
 public class ApplicationVM : BaseChanged
 {
-	/// Контекст базы данных
 	public static Models.Repositories.AppContext DB { get; set; } = new();
-	/// Сервис работы с таблицей Publications
 	public static PublicationService PublicationService { get; set; } = new(new PublicationRepository(DB));
-	/// Сервис работы с таблицей Sources
 	public static SourceService SourceService { get; set; } = new(new SourceRepository(DB));
 	public static UserService UserService { get; set; } = new(new UserRepository(DB));
 
-	/// Коллекция публикаций
 	private static ObservableCollection<Publication> publications = [];
 	public static ObservableCollection<Publication> Publications
 	{
@@ -53,11 +36,8 @@ public class ApplicationVM : BaseChanged
 	}
 
 	public static User? CurrentUser { get; set; }
-
-	/// Наблюдатель, оповещающий о выходе новых публикаций
 	public static Observer Observer { get; set; } = new();
 
-	/// Конструктор класса ApplicationVM
 	public ApplicationVM(string login)
 	{
 		DB.Publications.Load();
@@ -71,9 +51,7 @@ public class ApplicationVM : BaseChanged
 		CurrentUser = DB.Users.Include(u => u.Sources).First(u => u.Login == login);
 	}
 
-	/// Команда добавления источника
 	private RelayCommand? addSourceCommand;
-	/// Свойство для работы с addSourceCommand
 	public RelayCommand AddSourceCommand
 	{
 		get
@@ -121,9 +99,7 @@ public class ApplicationVM : BaseChanged
 		}
 	}
 
-	/// Команда удаления источника
 	private RelayCommand? removeSourceCommand;
-	/// Свойство для работы с removeSourceCommand
 	public RelayCommand RemoveSourceCommand
 	{
 		get
@@ -137,9 +113,7 @@ public class ApplicationVM : BaseChanged
 		}
 	}
 
-	/// Команда показа выбранной публикации
 	private static RelayCommand? viewPublicationCommand;
-	/// Свойство для работы с viewPublicationCommand
 	public static RelayCommand? ViewPublicationCommand
 	{
 		get

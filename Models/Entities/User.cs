@@ -25,7 +25,6 @@ public class User : BaseEntity
 	public ObservableCollection<ReadLater> ReadLater { get; set; } = [];
 
 	private bool notificationsOn = false;
-	/// Свойство для работы с notificationsOn
 	public bool NotificationsOn
 	{
 		get => notificationsOn;
@@ -37,7 +36,6 @@ public class User : BaseEntity
 	}
 
 	private ApplicationTheme theme;
-	/// Свойство для работы с theme
 	public ApplicationTheme Theme
 	{
 		get => theme;

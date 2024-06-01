@@ -5,29 +5,13 @@ using News.Models.Repositories;
 using News.ViewModels;
 using News.ViewModels.Services;
 
-/**
-	\brief Пространство имен, в котором содержится класс Observer
-	\param Содержит класс:
-		@ref Observer
-*/
 namespace News.Models;
 
-/**
-	\brief Класс, предназначенный для своевременного обновления текущих публикаций источников
-	
-	Наследуется от BaseChanged
-*/
 public class Observer
 {
-	/// Частота обновления публикаций
 	public TimeOnly UpdateFreq { get; set; } = new TimeOnly(hour : 0, minute : 10);
-
-	/// Сервис для таблицы Publications
 	public PublicationService PublicationService { get; set; } = new(new PublicationRepository(ApplicationVM.DB));
 
-	/**
-		\brief Асинхронный метод, проверяющий последние вышедшие публикации источников
-	*/
 	public async Task Update()
 	{
 		if (ApplicationVM.CurrentUser is null) return;
@@ -59,10 +43,6 @@ public class Observer
 		}
 	}
 
-	/**
-		\brief Асинхронный метод, для уведомления пользователя о вышедшей публикации источника
-		\param[in] publication Вышедшая публикация
-	*/
 	public static async Task ViewNotification(Publication publication)
 	{
 		var builder = new ToastContentBuilder()
