@@ -27,7 +27,14 @@ public class PublicationWindowVM(Publication Publication) : BaseChanged
 			return favouriteCommand ??= new RelayCommand((state) =>
 			{
 				if (state is null) return;
+
 				CurrentPublication.IsFavourite = (bool)state;
+				
+				if (CurrentPublication.IsFavourite)
+					ApplicationVM.FavouriteList.Add(CurrentPublication);
+				else
+					ApplicationVM.FavouriteList.Remove(CurrentPublication);
+
 				_ = ApplicationVM.PublicationService.UpdateAsync(CurrentPublication);
 			});
 		}
@@ -43,7 +50,15 @@ public class PublicationWindowVM(Publication Publication) : BaseChanged
 			return readLaterCommand ??= new RelayCommand((state) =>
 			{
 				if (state is null) return;
+
 				CurrentPublication.IsReadLater = (bool)state;
+
+
+				if (CurrentPublication.IsReadLater)
+					ApplicationVM.ReadLaterList.Add(CurrentPublication);
+				else
+					ApplicationVM.ReadLaterList.Remove(CurrentPublication);
+
 				_ = ApplicationVM.PublicationService.UpdateAsync(CurrentPublication);
 			});
 		}

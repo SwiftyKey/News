@@ -37,7 +37,9 @@ public class ApplicationVM : BaseChanged
 	/// Коллекция источников
 	public static ObservableCollection<Source> Sources { get; set; } = [];
 	/// Коллекция публикаций
-	public ObservableCollection<Publication> Publications { get; set; } = [];
+	public static ObservableCollection<Publication> Publications { get; set; } = [];
+	public static ObservableCollection<Publication> ReadLaterList { get; set; } = [];
+	public static ObservableCollection<Publication> FavouriteList { get; set; } = [];
 
 	/// Наблюдатель, оповещающий о выходе новых публикаций
 	public static Observer Observer { get; set; } = new();
@@ -50,6 +52,20 @@ public class ApplicationVM : BaseChanged
 
 		Publications = DB.Publications.Local.ToObservableCollection();
 		Sources = DB.Sources.Local.ToObservableCollection();
+
+		ReadLaterList = new ObservableCollection<Publication>
+		(
+			Publications
+			.Where(p => p.IsReadLater ==  true)
+			.ToList()
+		);
+
+		FavouriteList = new ObservableCollection<Publication>
+		(
+			Publications
+			.Where(p => p.IsFavourite == true)
+			.ToList()
+		);
 	}
 
 	/// Команда добавления источника

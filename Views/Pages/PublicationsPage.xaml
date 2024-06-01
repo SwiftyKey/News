@@ -24,7 +24,7 @@
             </CollectionViewSource>
             <CollectionViewSource
                 x:Key="FavouritesFeeds"
-                Source="{Binding Publications}"
+                Source="{Binding FavouriteList}"
                 xmlns:me="clr-namespace:News.Views.MarkupExtensions"
                 IsLiveFilteringRequested="True"
                 IsLiveSortingRequested="True">
@@ -33,17 +33,10 @@
                         PropertyName="PublishingDate"
                         Direction="Descending"/>
                 </CollectionViewSource.SortDescriptions>
-                <CollectionViewSource.Filter>
-                    <me:Filter>
-                        <me:PropertyFilter
-                            PropertyName="IsFavourite"
-                            Value="True"/>
-                    </me:Filter>
-                </CollectionViewSource.Filter>
             </CollectionViewSource>
             <CollectionViewSource
                 x:Key="ReadLaterFeeds"
-                Source="{Binding Publications}"
+                Source="{Binding ReadLaterList}"
                 xmlns:me="clr-namespace:News.Views.MarkupExtensions"
                 IsLiveFilteringRequested="True"
                 IsLiveSortingRequested="True">
@@ -52,13 +45,6 @@
                         PropertyName="PublishingDate"
                         Direction="Descending"/>
                 </CollectionViewSource.SortDescriptions>
-                <CollectionViewSource.Filter>
-                    <me:Filter>
-                        <me:PropertyFilter
-                            PropertyName="IsReadLater"
-                            Value="True"/>
-                    </me:Filter>
-                </CollectionViewSource.Filter>
             </CollectionViewSource>
         </ResourceDictionary>
     </Page.Resources>
