@@ -20,7 +20,7 @@ public class Observer
 		{
 			var reader = await FeedReader.ReadAsync(source.Url);
 
-			foreach (var item in reader.Items)
+			foreach (var item in reader.Items.Reverse())
 			{
 				var result = PublicationService.GetByUrl(item.Link);
 

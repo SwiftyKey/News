@@ -6,11 +6,11 @@ using System.Windows;
 
 namespace News.ViewModels;
 
-public class PublicationWindowVM(Publication Publication) : BaseChanged
+public class PublicationWindowVM(Publication publication) : BaseChanged
 {
-	public Publication CurrentPublication { get; set; } = Publication;
-	public bool IsFavourite{ get; set; } = ApplicationVM.CurrentUser.FavouritesPublications.Contains(Publication);
-	public bool IsReadLater { get; set; } = ApplicationVM.CurrentUser.ReadLaterPublications.Contains(Publication);
+	public Publication CurrentPublication { get; set; } = publication;
+	public bool IsFavourite{ get; set; } = ApplicationVM.CurrentUser.FavouritesPublications.Contains(publication);
+	public bool IsReadLater { get; set; } = ApplicationVM.CurrentUser.ReadLaterPublications.Contains(publication);
 
 	private RelayCommand? favouriteCommand;
 	public RelayCommand? FavouriteCommand

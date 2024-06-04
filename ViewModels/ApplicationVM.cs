@@ -21,8 +21,8 @@ public class ApplicationVM : BaseChanged
 	public static SourceService SourceService { get; set; } = new(new SourceRepository(DB));
 	public static UserService UserService { get; set; } = new(new UserRepository(DB));
 
-	private static ObservableCollection<Publication> publications = [];
-	public static ObservableCollection<Publication> Publications
+	private ObservableCollection<Publication> publications = [];
+	public ObservableCollection<Publication> Publications
 	{
 		get
 		{
